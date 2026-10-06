@@ -1,0 +1,9 @@
+{
+  "track": "introduction",
+  "completed": [
+    "introduction/01_Welcome_to_Semantica.ipynb",
+    "introduction/02_Data_Ingestion.ipynb"
+  ],
+  "next": "introduction/03_Document_Parsing.ipynb",
+  "runner": "bash .cursor/scripts/run-cookbook-notebook.sh"
+}

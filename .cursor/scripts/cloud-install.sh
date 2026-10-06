@@ -6,7 +6,10 @@ cd /workspace
 export PATH="${HOME}/.local/bin:${PATH}"
 
 python3 -m pip install --upgrade pip
-python3 -m pip install -e ".[dev,explorer]"
+# Cookbook notebooks need FAISS, parsers, and local embeddings (no LLM key required).
+python3 -m pip install -e ".[dev,explorer,viz,vectorstore-faiss,documents,parse-pdf,embeddings-local,ingest-git]"
+# Used by cookbook/introduction/02_Data_Ingestion.ipynb (DB ingest demos).
+python3 -m pip install "sqlalchemy>=2.0.0"
 
 cd explorer
 npm ci
