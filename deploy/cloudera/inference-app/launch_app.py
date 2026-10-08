@@ -7,6 +7,7 @@ Bind to 127.0.0.1 and CDSW_APP_PORT (platform proxy requirement). See README.
 
 from __future__ import annotations
 
+import asyncio
 import os
 import shutil
 import subprocess
@@ -145,6 +146,55 @@ def _collect_cai_allowed_origins(app_url: str, port: int) -> list[str]:
 
 def _log_step(message: str) -> None:
     print(message, flush=True)
+
+
+def _launch_script_path() -> Path:
+    return _inference_app_dir() / "launch_app.py"
+
+
+def _needs_subprocess_uvicorn() -> bool:
+    """True when uvicorn.run() would conflict with Jupyter's asyncio loop."""
+    if os.environ.get("SEMANTICA_CAIRUN_SUBPROCESS", "").strip() == "1":
+        return False
+    if os.environ.get("SEMANTICA_ALLOW_NOTEBOOK_UVICORN", "").strip().lower() == "true":
+        return False
+    if "ipykernel" in sys.modules or "IPython" in sys.modules:
+        return True
+    try:
+        asyncio.get_running_loop()
+    except RuntimeError:
+        return False
+    return True
+
+
+def _relaunch_in_subprocess_for_uvicorn() -> None:
+    """CAI often starts apps from a notebook kernel; uvicorn needs its own process."""
+    script = _launch_script_path()
+    if not script.is_file():
+        _log_step(
+            "WARNING: Notebook/asyncio context detected but launch_app.py was not found "
+            f"at {script}. Set SEMANTICA_INFERENCE_APP_DIR or run: "
+            "python deploy/cloudera/inference-app/launch_app.py"
+        )
+        return
+
+    _log_step(
+        "Notebook or active asyncio event loop detected — "
+        f"re-launching Explorer with {sys.executable} {script} "
+        "(SEMANTICA_CAIRUN_SUBPROCESS=1)…"
+    )
+    env = os.environ.copy()
+    env["SEMANTICA_CAIRUN_SUBPROCESS"] = "1"
+    code = subprocess.call([sys.executable, str(script)], env=env)
+    raise SystemExit(code)
+
+
+def _run_uvicorn(app: object, host: str, port: int) -> None:
+    import uvicorn
+
+    if _needs_subprocess_uvicorn():
+        _relaunch_in_subprocess_for_uvicorn()
+    uvicorn.run(app, host=host, port=port, log_level="info")
 
 
 def _configure_cai_environment() -> tuple[str, int, Path]:
@@ -442,6 +492,9 @@ def _ensure_explorer_ui_bundle() -> None:
 
 
 def main() -> None:
+    if _needs_subprocess_uvicorn():
+        _relaunch_in_subprocess_for_uvicorn()
+
     _log_step("Semantica CAI launch_app.py — starting setup…")
     host, port, graph_path = _configure_cai_environment()
     _log_step(
@@ -512,7 +565,7 @@ def main() -> None:
     print("Blocking on uvicorn (process stays foreground until exit).", flush=True)
     print("", flush=True)
 
-    uvicorn.run(app, host=host, port=port, log_level="info")
+    _run_uvicorn(app, host=host, port=port)
 
 
 if __name__ == "__main__":

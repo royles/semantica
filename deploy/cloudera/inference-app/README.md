@@ -32,7 +32,7 @@ Read-only UIs may use `CDSW_READONLY_PORT`; Explorer needs read/write graph APIs
   python deploy/cloudera/inference-app/launch_app.py
   ```
 
-  If CAI runs code inside a **notebook kernel**, `__file__` is undefined unless you use `%run` on the script path above. Optional: set `SEMANTICA_INFERENCE_APP_DIR` to the absolute path of `deploy/cloudera/inference-app`.
+  If CAI runs code inside a **notebook kernel**, prefer **`%run deploy/cloudera/inference-app/launch_app.py`** or the subprocess re-launch (automatic when `ipykernel` is loaded). Do not call `uvicorn.run()` directly in a notebook — you will get *Cannot run the event loop while another loop is running*. Optional: set `SEMANTICA_INFERENCE_APP_DIR` to the absolute path of `deploy/cloudera/inference-app`.
 - **Requirements:** repository root [`requirements.txt`](../../../requirements.txt) (`semantica[explorer]` from PyPI), or [`inference-app/requirements.txt`](requirements.txt) (same pin)
 
 **Git clone without Docker:** CAI Python engines usually **do not include npm**. The React bundle is not in git (`semantica/static/` is build output). Use one of:
