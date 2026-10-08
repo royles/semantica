@@ -6,7 +6,7 @@
 
 | Path | Purpose |
 |------|---------|
-| [`inference-app/`](inference-app/) | **Cloudera AI Inference** application — Knowledge Explorer on port **8080** |
+| [`inference-app/`](inference-app/) | CAI / CDSW application — Explorer on **`127.0.0.1:$CDSW_APP_PORT`** |
 | `inference-app/launch_app.py` | CAI Git **entrypoint** (application start script) |
 | `inference-app/requirements.txt` | Dependencies for Git-based deploy (copy to repo root if CAI requires it there) |
 | `inference-app/Dockerfile` | Container image for Docker-based CAI deploy |

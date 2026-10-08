@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Cloudera AI Inference application entrypoint for Semantica Knowledge Explorer.
+Cloudera AI (CAI / CDSW) application entrypoint for Semantica Knowledge Explorer.
 
-Listens on APP_PORT (CAI sets this to 8080). See deploy/cloudera/inference-app/README.md.
+Bind to 127.0.0.1 and CDSW_APP_PORT (platform proxy requirement). See README.
 """
 
 from __future__ import annotations
@@ -52,11 +52,33 @@ def _seed_sample_graph(path: Path) -> None:
     graph.save_to_file(str(path))
 
 
-def _configure_cai_environment() -> tuple[str, int, Path]:
-    port = int(os.environ.get("APP_PORT") or os.environ.get("PORT", "8080"))
-    host = os.environ.get("SEMANTICA_HOST", "0.0.0.0")
+def _resolve_cai_port() -> int:
+    """CDSW/CAI apps must listen on CDSW_APP_PORT (see Cloudera ML embedded web apps)."""
+    raw = (
+        os.environ.get("CDSW_APP_PORT")
+        or os.environ.get("APP_PORT")  # some Inference deploy docs use APP_PORT
+        or os.environ.get("PORT", "8080")
+    )
+    return int(raw)
 
-    app_url = (os.environ.get("APP_URL") or "").strip().rstrip("/")
+
+def _resolve_cai_app_url() -> str:
+    explicit = (os.environ.get("APP_URL") or "").strip().rstrip("/")
+    if explicit:
+        return explicit
+    engine_id = os.environ.get("CDSW_ENGINE_ID", "").strip()
+    domain = os.environ.get("CDSW_DOMAIN", "").strip()
+    if engine_id and domain:
+        return f"https://{engine_id}.{domain}"
+    return ""
+
+
+def _configure_cai_environment() -> tuple[str, int, Path]:
+    port = _resolve_cai_port()
+    # CDSW/CAI reverse-proxy expects the app on loopback, not 0.0.0.0.
+    host = os.environ.get("SEMANTICA_HOST", "127.0.0.1")
+
+    app_url = _resolve_cai_app_url()
     if app_url and not os.environ.get("ALLOWED_ORIGINS"):
         os.environ["ALLOWED_ORIGINS"] = app_url
 
@@ -84,7 +106,12 @@ def _configure_explorer_auth_for_cai() -> None:
     if os.environ.get("SEMANTICA_ALLOW_ANONYMOUS", "").strip().lower() == "false":
         return
 
-    on_cai = bool(os.environ.get("APP_URL") or os.environ.get("APP_PORT"))
+    on_cai = bool(
+        os.environ.get("CDSW_APP_PORT")
+        or os.environ.get("CDSW_DOMAIN")
+        or os.environ.get("APP_URL")
+        or os.environ.get("APP_PORT")
+    )
     if on_cai and not os.environ.get("SEMANTICA_API_KEY"):
         os.environ["SEMANTICA_ALLOW_ANONYMOUS"] = "true"
         print(

@@ -1,0 +1,47 @@
+{
+  "graph_id": "63100c20-92c2-4224-a7f6-9d0d3f1481a1",
+  "nodes": [
+    {
+      "id": "python",
+      "type": "language",
+      "properties": {
+        "content": "Python programming language"
+      }
+    },
+    {
+      "id": "semantica",
+      "type": "framework",
+      "properties": {
+        "content": "Semantica knowledge graph platform"
+      }
+    },
+    {
+      "id": "cloudera_ai",
+      "type": "platform",
+      "properties": {
+        "content": "Cloudera AI Inference application hosting"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "2d326ee1-309f-53d5-8710-aa6e6b99191c",
+      "familyId": "2d326ee1-309f-53d5-8710-aa6e6b99191c",
+      "source_id": "python",
+      "target_id": "semantica",
+      "type": "powers",
+      "weight": 1.0,
+      "properties": {}
+    },
+    {
+      "id": "714faaea-044a-5760-83ec-cbaa37bba214",
+      "familyId": "714faaea-044a-5760-83ec-cbaa37bba214",
+      "source_id": "semantica",
+      "target_id": "cloudera_ai",
+      "type": "deployed_on",
+      "weight": 1.0,
+      "properties": {}
+    }
+  ],
+  "links": []
+}

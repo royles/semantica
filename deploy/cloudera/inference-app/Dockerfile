@@ -16,8 +16,8 @@ FROM python:3.13-slim AS runtime
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    APP_PORT=8080 \
-    SEMANTICA_HOST=0.0.0.0
+    CDSW_APP_PORT=8080 \
+    SEMANTICA_HOST=127.0.0.1
 
 WORKDIR /app
 
@@ -41,6 +41,6 @@ USER semantica
 EXPOSE 8080
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
-    CMD python -c "import json, os, urllib.request; p=os.environ.get('APP_PORT','8080'); data=json.load(urllib.request.urlopen(f'http://127.0.0.1:{p}/api/health', timeout=3)); raise SystemExit(0 if data.get('status') == 'ok' else 1)"
+    CMD python -c "import json, os, urllib.request; p=os.environ.get('CDSW_APP_PORT') or os.environ.get('APP_PORT','8080'); data=json.load(urllib.request.urlopen(f'http://127.0.0.1:{p}/api/health', timeout=3)); raise SystemExit(0 if data.get('status') == 'ok' else 1)"
 
 CMD ["python", "deploy/cloudera/inference-app/launch_app.py"]
