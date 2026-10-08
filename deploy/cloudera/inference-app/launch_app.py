@@ -8,6 +8,8 @@ Bind to 127.0.0.1 and CDSW_APP_PORT (platform proxy requirement). See README.
 from __future__ import annotations
 
 import os
+import shutil
+import subprocess
 import sys
 from pathlib import Path
 
@@ -78,14 +80,45 @@ def _resolve_cai_app_url() -> str:
     return ""
 
 
+def _collect_cai_allowed_origins(app_url: str, port: int) -> list[str]:
+    """Browser Origin values for CORS / WebSocket allowlists on CAI."""
+    origins: list[str] = []
+    for raw in (
+        app_url,
+        (os.environ.get("SERVICE_DOMAIN") or "").strip().rstrip("/"),
+        (os.environ.get("CDSW_APP_URL") or "").strip().rstrip("/"),
+    ):
+        if raw and raw not in origins:
+            origins.append(raw)
+    engine_id = os.environ.get("CDSW_ENGINE_ID", "").strip()
+    domain = os.environ.get("CDSW_DOMAIN", "").strip()
+    if engine_id and domain:
+        for scheme in ("https", "http"):
+            candidate = f"{scheme}://{engine_id}.{domain}"
+            if candidate not in origins:
+                origins.append(candidate)
+    # Loopback is used by some CAI health probes and port-forward smoke tests.
+    for host in ("127.0.0.1", "localhost"):
+        candidate = f"http://{host}:{port}"
+        if candidate not in origins:
+            origins.append(candidate)
+    return origins
+
+
+def _log_step(message: str) -> None:
+    print(message, flush=True)
+
+
 def _configure_cai_environment() -> tuple[str, int, Path]:
     port = _resolve_frontend_port()
     # CDSW/CAI reverse-proxy expects the app on loopback, not 0.0.0.0.
     host = os.environ.get("SEMANTICA_HOST", "127.0.0.1")
 
     app_url = _resolve_cai_app_url()
-    if app_url and not os.environ.get("ALLOWED_ORIGINS"):
-        os.environ["ALLOWED_ORIGINS"] = app_url
+    if not os.environ.get("ALLOWED_ORIGINS"):
+        origins = _collect_cai_allowed_origins(app_url, port)
+        if origins:
+            os.environ["ALLOWED_ORIGINS"] = ",".join(origins)
 
     graph_path = Path(
         os.environ.get("SEMANTICA_GRAPH_PATH", str(_default_graph_path()))
@@ -136,26 +169,120 @@ def _configure_explorer_auth_for_cai() -> None:
         )
 
 
-def _warn_if_ui_bundle_missing() -> None:
+def _static_index_path() -> Path:
     import semantica
 
-    static_index = Path(semantica.__file__).resolve().parent / "static" / "index.html"
-    if static_index.is_file():
-        return
-    print(
-        "WARNING: Explorer UI bundle missing (semantica/static/index.html). "
-        "Install semantica[explorer] from PyPI or build the frontend "
-        "(cd explorer && npm ci && npm run build). API /docs will still work.",
-        file=sys.stderr,
-        flush=True,
+    return Path(semantica.__file__).resolve().parent / "static" / "index.html"
+
+
+def _find_semantica_repo_root() -> Path | None:
+    """Locate a git checkout that includes the Explorer frontend sources."""
+    explicit = (os.environ.get("SEMANTICA_REPO_ROOT") or "").strip()
+    if explicit:
+        candidate = Path(explicit).expanduser().resolve()
+        if (candidate / "explorer" / "package.json").is_file():
+            return candidate
+
+    for start in (
+        Path(__file__).resolve().parent,
+        Path.cwd(),
+    ):
+        for parent in (start, *start.parents):
+            if (parent / "explorer" / "package.json").is_file() and (
+                parent / "pyproject.toml"
+            ).is_file():
+                return parent
+    return None
+
+
+def _try_build_explorer_ui_from_source() -> bool:
+    """Build ../semantica/static when deploying from a git checkout without a wheel bundle."""
+    if os.environ.get("SEMANTICA_SKIP_UI_BUILD", "").strip().lower() == "true":
+        return False
+
+    repo_root = _find_semantica_repo_root()
+    if repo_root is None:
+        return False
+
+    explorer_dir = repo_root / "explorer"
+    if not explorer_dir.is_dir():
+        return False
+
+    npm = shutil.which("npm")
+    if not npm:
+        _log_step(
+            "Explorer UI bundle missing and npm is not installed — "
+            "cannot build from explorer/. "
+            "Use pip install semantica[explorer] from PyPI or the Docker image."
+        )
+        return False
+
+    _log_step(
+        f"Explorer UI bundle missing — building from {explorer_dir} "
+        "(npm ci && npm run build; may take several minutes on first run)…"
     )
+    env = os.environ.copy()
+    env.setdefault("CI", "true")
+    try:
+        subprocess.run(
+            [npm, "ci"],
+            cwd=explorer_dir,
+            env=env,
+            check=True,
+        )
+        subprocess.run(
+            [npm, "run", "build"],
+            cwd=explorer_dir,
+            env=env,
+            check=True,
+        )
+    except subprocess.CalledProcessError:
+        print(
+            "ERROR: Explorer frontend build failed (see npm output above).",
+            file=sys.stderr,
+            flush=True,
+        )
+        return False
+
+    return _static_index_path().is_file()
+
+
+def _ensure_explorer_ui_bundle() -> None:
+    static_index = _static_index_path()
+    if static_index.is_file():
+        _log_step(f"Explorer UI bundle found: {static_index}")
+        return
+
+    if _try_build_explorer_ui_from_source():
+        _log_step(f"Explorer UI bundle built: {_static_index_path()}")
+        return
+
+    on_cai = bool(os.environ.get("CDSW_APP_PORT"))
+    message = (
+        "Explorer UI bundle missing (semantica/static/index.html).\n"
+        "  • Git deploy from this repo: ensure Node.js/npm are available (auto-build runs on startup), or run:\n"
+        "      cd explorer && npm ci && npm run build\n"
+        "  • Or install the PyPI wheel with the pre-built UI:\n"
+        "      pip install 'semantica[explorer]==0.7.0'\n"
+        "  • Or use deploy/cloudera/inference-app/Dockerfile (multi-stage build).\n"
+        "Set SEMANTICA_SKIP_UI_BUILD=true to skip auto-build and serve /docs only."
+    )
+    if on_cai:
+        print(f"ERROR: {message}", file=sys.stderr, flush=True)
+        raise SystemExit(1)
+    print(f"WARNING: {message}\nAPI /docs will still work.", file=sys.stderr, flush=True)
 
 
 def main() -> None:
-    print("Semantica CAI launch_app.py — starting setup…", flush=True)
+    _log_step("Semantica CAI launch_app.py — starting setup…")
     host, port, graph_path = _configure_cai_environment()
+    _log_step(
+        f"Environment OK: host={host} port={port} graph={graph_path} "
+        f"ALLOWED_ORIGINS={os.environ.get('ALLOWED_ORIGINS', '(default)')}"
+    )
     _configure_explorer_auth_for_cai()
 
+    _log_step("Importing uvicorn…")
     try:
         import uvicorn
     except ImportError as exc:
@@ -165,12 +292,30 @@ def main() -> None:
         )
         raise SystemExit(1) from exc
 
-    from semantica.explorer.app import create_app
-    from semantica.explorer.session import GraphSession
+    _log_step("Importing Semantica Explorer (first run can take 1–2 minutes)…")
+    try:
+        from semantica.explorer.app import create_app
+        from semantica.explorer.session import GraphSession
+    except Exception:
+        print("ERROR: Failed to import semantica.explorer:", file=sys.stderr, flush=True)
+        import traceback
 
-    _warn_if_ui_bundle_missing()
+        traceback.print_exc()
+        raise SystemExit(1) from None
 
-    session = GraphSession.from_file(str(graph_path))
+    _ensure_explorer_ui_bundle()
+
+    _log_step(f"Loading graph from {graph_path}…")
+    try:
+        session = GraphSession.from_file(str(graph_path))
+    except Exception:
+        print("ERROR: Failed to load graph session:", file=sys.stderr, flush=True)
+        import traceback
+
+        traceback.print_exc()
+        raise SystemExit(1) from None
+
+    _log_step("Creating FastAPI application…")
     app = create_app(session=session)
 
     service_domain = os.environ.get("SERVICE_DOMAIN", "")
@@ -185,7 +330,7 @@ def main() -> None:
         print(f"  CAI URL: {app_url}/  ← open this in your browser", flush=True)
     else:
         print(f"  Local:   {local_base}/  ← open while port-forwarding", flush=True)
-    print(f"  Health:  {local_base}/api/health", flush=True)
+    print(f"  Health:  {local_base}/api/health  (or /healthcheck for CAI polling)", flush=True)
     print(f"  Swagger: {local_base}/docs", flush=True)
     print(
         f"  Graph:   {graph_path} "
@@ -203,4 +348,13 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except SystemExit:
+        raise
+    except Exception:
+        print("ERROR: launch_app.py failed:", file=sys.stderr, flush=True)
+        import traceback
+
+        traceback.print_exc()
+        raise SystemExit(1) from None

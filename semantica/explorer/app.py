@@ -218,6 +218,11 @@ def create_app(
     async def health():
         return {"status": "ok"}
 
+    @app.get("/healthcheck", include_in_schema=False)
+    async def healthcheck():
+        """Cloudera AI polling / custom CDSW_APP_POLLING_ENDPOINT compatibility."""
+        return {"status": "ok"}
+
     @app.get("/api/info")
     async def info():
         return {

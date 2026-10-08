@@ -1,0 +1,6 @@
+# Cloudera AI / CDSW Git applications: install from PyPI so the Explorer UI
+# bundle (semantica/static/) is included. For editable installs from a clone,
+# launch_app.py can auto-build the UI when Node.js is available.
+#
+# See deploy/cloudera/inference-app/README.md
+semantica[explorer]==0.7.0
