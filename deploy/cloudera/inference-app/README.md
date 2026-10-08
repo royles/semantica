@@ -27,11 +27,16 @@ Read-only UIs may use `CDSW_READONLY_PORT`; Explorer needs read/write graph APIs
 - **Entrypoint:** `deploy/cloudera/inference-app/launch_app.py`
 - **Requirements:** repository root [`requirements.txt`](../../../requirements.txt) (`semantica[explorer]` from PyPI), or [`inference-app/requirements.txt`](requirements.txt) (same pin)
 
-**Git clone without Docker:** if you `pip install -e .` from source, the React bundle is not in git (`semantica/static/` is build output). Either:
+**Git clone without Docker:** CAI Python engines usually **do not include npm**. The React bundle is not in git (`semantica/static/` is build output). Use one of:
 
-1. Let **`launch_app.py` auto-build** on first start (Node.js + npm must be on the engine), or  
-2. Run once: `cd explorer && npm ci && npm run build`, or  
-3. `pip install 'semantica[explorer]==0.7.0'` from PyPI instead of an editable install.
+1. **Recommended for CAI:** install the PyPI wheel (includes the UI) — do **not** use `pip install -e .` in the app startup script:
+   ```bash
+   pip uninstall -y semantica
+   pip install --force-reinstall 'semantica[explorer]==0.7.0'
+   ```
+2. **`launch_app.py` auto-fix:** on first start it can **download the PyPI wheel and extract `semantica/static/`** (needs outbound PyPI access; no npm).
+3. **Docker** (`inference-app/Dockerfile`) — multi-stage build with Node.
+4. **Dev only** (npm on the engine): `cd explorer && npm ci && npm run build`.
 
 ## Environment variables
 
@@ -75,7 +80,8 @@ curl -s "http://127.0.0.1:${CDSW_APP_PORT}/api/health"
 | Logs stop after “CAI SSO mode…” | Wait 1–2 min for Explorer imports; newer logs show each step. Check stderr for tracebacks. |
 | Exits immediately | Set **`CDSW_APP_PORT`** in the job/application environment |
 | “Explorer UI not available” page | Install **`semantica[explorer]`** from PyPI, use the **Dockerfile**, or build/auto-build the frontend (see **Deploy** above) |
-| `pip install semantica[explorer]` says satisfied, UI still missing | You likely have **`pip install -e .`** — editable installs skip the PyPI UI bundle. Run **`cd explorer && npm ci && npm run build`**, or **`pip uninstall -y semantica && pip install --force-reinstall 'semantica[explorer]==0.7.0'`** |
+| `pip install semantica[explorer]` says satisfied, UI still missing | **`pip install -e .`** is active — use **`pip uninstall -y semantica && pip install --force-reinstall 'semantica[explorer]==0.7.0'`** (CAI has no npm). Or restart after **`launch_app.py`** extracts the UI from PyPI. |
+| `npm: command not found` | Expected on CAI — use PyPI **`semantica[explorer]`** or Docker, not `explorer/` npm build |
 | Empty dashboard (server up) | `SEMANTICA_ALLOW_ANONYMOUS=true`; do not rely on `SEMANTICA_API_KEY` alone for the browser |
 | App never opens in CAI grid | Set **`CDSW_APP_POLLING_ENDPOINT=/healthcheck`**; confirm **`curl http://127.0.0.1:$CDSW_APP_PORT/healthcheck`** inside the pod |
 | Proxy 502 | Confirm **`127.0.0.1`** + **`CDSW_APP_PORT`**, not `0.0.0.0` or a different env var for the frontend |

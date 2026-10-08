@@ -11,6 +11,9 @@ import os
 import shutil
 import subprocess
 import sys
+import tempfile
+import zipfile
+from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 
 # CAI and systemd often run without a TTY; flush logs immediately.
@@ -215,13 +218,13 @@ def _explain_missing_ui_when_pip_satisfied() -> str:
                 "Editable installs do NOT copy the PyPI wheel's pre-built UI. "
                 "The React bundle must exist under semantica/static/ in that checkout.",
                 "",
-                "Fix (stay on git checkout):",
-                "  cd explorer && npm ci && npm run build",
-                "  # then restart launch_app.py",
-                "",
-                "Fix (use PyPI bundle instead of -e):",
+                "Fix on CAI (no npm on engine — typical):",
                 "  pip uninstall -y semantica",
                 "  pip install --force-reinstall 'semantica[explorer]==0.7.0'",
+                "  # restart launch_app.py (or let it download semantica/static from PyPI on startup)",
+                "",
+                "Fix with Node.js (optional, dev engines only):",
+                "  cd explorer && npm ci && npm run build",
                 "",
                 "Do not run `pip install semantica[explorer]` alone while -e is active; "
                 "pip will skip reinstalling and the UI will stay missing.",
@@ -258,6 +261,78 @@ def _find_semantica_repo_root() -> Path | None:
     return None
 
 
+def _semantica_pypi_version() -> str:
+    try:
+        return version("semantica")
+    except PackageNotFoundError:
+        return "0.7.0"
+
+
+def _try_copy_ui_bundle_from_pypi_wheel() -> bool:
+    """Extract semantica/static from the PyPI wheel (no Node.js required)."""
+    if os.environ.get("SEMANTICA_SKIP_UI_WHEEL_EXTRACT", "").strip().lower() == "true":
+        return False
+
+    import semantica
+
+    pkg_dir = Path(semantica.__file__).resolve().parent
+    static_dir = pkg_dir / "static"
+    release = _semantica_pypi_version()
+
+    _log_step(
+        f"Explorer UI bundle missing — downloading PyPI wheel semantica=={release} "
+        "to extract semantica/static/ (no npm required)…"
+    )
+
+    with tempfile.TemporaryDirectory(prefix="semantica-ui-") as tmp:
+        tmp_path = Path(tmp)
+        try:
+            subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "pip",
+                    "download",
+                    f"semantica=={release}",
+                    "--no-deps",
+                    "-d",
+                    str(tmp_path),
+                ],
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+        except subprocess.CalledProcessError as exc:
+            _log_step(
+                "Could not download semantica wheel from PyPI "
+                f"(need outbound network). pip said: {(exc.stderr or exc.stdout or '').strip()}"
+            )
+            return False
+
+        wheels = sorted(tmp_path.glob("semantica-*.whl"))
+        if not wheels:
+            _log_step("PyPI download did not produce a semantica wheel file.")
+            return False
+
+        prefix = "semantica/static/"
+        extracted = 0
+        with zipfile.ZipFile(wheels[0]) as wheel:
+            for name in wheel.namelist():
+                if not name.startswith(prefix) or name.endswith("/"):
+                    continue
+                rel = name[len(prefix) :]
+                target = static_dir / rel
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_bytes(wheel.read(name))
+                extracted += 1
+
+        if extracted == 0:
+            _log_step(f"No {prefix} files found inside {wheels[0].name}.")
+            return False
+
+    return _static_index_path().is_file()
+
+
 def _try_build_explorer_ui_from_source() -> bool:
     """Build ../semantica/static when deploying from a git checkout without a wheel bundle."""
     if os.environ.get("SEMANTICA_SKIP_UI_BUILD", "").strip().lower() == "true":
@@ -273,11 +348,6 @@ def _try_build_explorer_ui_from_source() -> bool:
 
     npm = shutil.which("npm")
     if not npm:
-        _log_step(
-            "Explorer UI bundle missing and npm is not installed — "
-            "cannot build from explorer/. "
-            "Use pip install semantica[explorer] from PyPI or the Docker image."
-        )
         return False
 
     _log_step(
@@ -314,6 +384,10 @@ def _ensure_explorer_ui_bundle() -> None:
     static_index = _static_index_path()
     if static_index.is_file():
         _log_step(f"Explorer UI bundle found: {static_index}")
+        return
+
+    if _try_copy_ui_bundle_from_pypi_wheel():
+        _log_step(f"Explorer UI bundle extracted from PyPI: {_static_index_path()}")
         return
 
     if _try_build_explorer_ui_from_source():
