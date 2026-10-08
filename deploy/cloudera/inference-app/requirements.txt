@@ -1,0 +1,2 @@
+# Cloudera AI Inference — Git application dependencies.
+semantica[explorer]==0.7.0

@@ -1,0 +1,15 @@
+{
+  "track": "introduction",
+  "completed": [
+    "introduction/01_Welcome_to_Semantica.ipynb",
+    "introduction/02_Data_Ingestion.ipynb",
+    "introduction/03_Document_Parsing.ipynb",
+    "introduction/04_Data_Normalization.ipynb",
+    "introduction/05_Entity_Extraction.ipynb",
+    "introduction/06_Relation_Extraction.ipynb",
+    "introduction/07_Building_Knowledge_Graphs.ipynb",
+    "introduction/08_Your_First_Knowledge_Graph.ipynb"
+  ],
+  "next": "introduction/09_Graph_Store.ipynb",
+  "runner": "bash .cursor/scripts/run-cookbook-notebook.sh"
+}
