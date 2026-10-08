@@ -1,6 +1,9 @@
-# Cloudera AI Inference — Docker application image.
+# Cloudera AI — Docker application image.
 # Build from repository root:
 #   docker build -f deploy/cloudera/inference-app/Dockerfile -t semantica-knowledge-explorer-cai:latest .
+#
+# At runtime the platform sets CDSW_APP_PORT; the frontend must listen on
+# 127.0.0.1:CDSW_APP_PORT (see launch_app.py).
 
 # syntax=docker/dockerfile:1
 FROM node:26-alpine@sha256:2d984a15c9b54fd0aeb608b8e0d0d83529eb34d2966db27a1fb4f1edc3d298a3 AS frontend-builder
@@ -16,7 +19,6 @@ FROM python:3.13-slim AS runtime
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    CDSW_APP_PORT=8080 \
     SEMANTICA_HOST=127.0.0.1
 
 WORKDIR /app
@@ -38,9 +40,10 @@ RUN pip install --no-cache-dir -r explorer-extra-py313.txt -r pep517-build.txt -
 
 USER semantica
 
-EXPOSE 8080
-
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
-    CMD python -c "import json, os, urllib.request; p=os.environ.get('CDSW_APP_PORT') or os.environ.get('APP_PORT','8080'); data=json.load(urllib.request.urlopen(f'http://127.0.0.1:{p}/api/health', timeout=3)); raise SystemExit(0 if data.get('status') == 'ok' else 1)"
+    CMD python -c "import json, os, sys, urllib.request; p=os.environ.get('CDSW_APP_PORT'); \
+if not p: sys.exit(1); \
+data=json.load(urllib.request.urlopen(f'http://127.0.0.1:{p}/api/health', timeout=3)); \
+raise SystemExit(0 if data.get('status') == 'ok' else 1)"
 
 CMD ["python", "deploy/cloudera/inference-app/launch_app.py"]

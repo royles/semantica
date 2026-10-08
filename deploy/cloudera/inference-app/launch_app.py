@@ -52,13 +52,18 @@ def _seed_sample_graph(path: Path) -> None:
     graph.save_to_file(str(path))
 
 
-def _resolve_cai_port() -> int:
-    """CDSW/CAI apps must listen on CDSW_APP_PORT (see Cloudera ML embedded web apps)."""
-    raw = (
-        os.environ.get("CDSW_APP_PORT")
-        or os.environ.get("APP_PORT")  # some Inference deploy docs use APP_PORT
-        or os.environ.get("PORT", "8080")
-    )
+def _resolve_frontend_port() -> int:
+    """Explorer UI/API must bind only to CDSW_APP_PORT (set by the platform)."""
+    raw = os.environ.get("CDSW_APP_PORT")
+    if raw is None or str(raw).strip() == "":
+        print(
+            "ERROR: CDSW_APP_PORT is not set. The Knowledge Explorer frontend must "
+            "listen on the port provided in CDSW_APP_PORT (bind 127.0.0.1). "
+            "Other auxiliary services may use different ports inside the container.",
+            file=sys.stderr,
+            flush=True,
+        )
+        raise SystemExit(1)
     return int(raw)
 
 
@@ -74,7 +79,7 @@ def _resolve_cai_app_url() -> str:
 
 
 def _configure_cai_environment() -> tuple[str, int, Path]:
-    port = _resolve_cai_port()
+    port = _resolve_frontend_port()
     # CDSW/CAI reverse-proxy expects the app on loopback, not 0.0.0.0.
     host = os.environ.get("SEMANTICA_HOST", "127.0.0.1")
 
@@ -110,7 +115,6 @@ def _configure_explorer_auth_for_cai() -> None:
         os.environ.get("CDSW_APP_PORT")
         or os.environ.get("CDSW_DOMAIN")
         or os.environ.get("APP_URL")
-        or os.environ.get("APP_PORT")
     )
     if on_cai and not os.environ.get("SEMANTICA_API_KEY"):
         os.environ["SEMANTICA_ALLOW_ANONYMOUS"] = "true"
