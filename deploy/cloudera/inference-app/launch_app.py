@@ -175,6 +175,69 @@ def _static_index_path() -> Path:
     return Path(semantica.__file__).resolve().parent / "static" / "index.html"
 
 
+def _editable_install_root() -> Path | None:
+    """Return the git checkout path when semantica is installed editable (-e)."""
+    try:
+        result = subprocess.run(
+            [sys.executable, "-m", "pip", "show", "semantica"],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+    except OSError:
+        return None
+    if result.returncode != 0:
+        return None
+    for line in result.stdout.splitlines():
+        if line.startswith("Editable project location:"):
+            raw = line.split(":", 1)[1].strip()
+            if raw:
+                return Path(raw).resolve()
+    return None
+
+
+def _explain_missing_ui_when_pip_satisfied() -> str:
+    pkg_root = Path(__file__).resolve().parent
+    static = _static_index_path()
+    editable = _editable_install_root()
+    lines = [
+        f"Python loads semantica from: {static.parent.parent}",
+        f"Expected UI file: {static} (exists={static.is_file()})",
+    ]
+    if editable is not None:
+        lines.extend(
+            [
+                "",
+                "pip reports semantica[explorer] as installed because this is an "
+                f"EDITABLE install (-e) of the git checkout at:",
+                f"  {editable}",
+                "",
+                "Editable installs do NOT copy the PyPI wheel's pre-built UI. "
+                "The React bundle must exist under semantica/static/ in that checkout.",
+                "",
+                "Fix (stay on git checkout):",
+                "  cd explorer && npm ci && npm run build",
+                "  # then restart launch_app.py",
+                "",
+                "Fix (use PyPI bundle instead of -e):",
+                "  pip uninstall -y semantica",
+                "  pip install --force-reinstall 'semantica[explorer]==0.7.0'",
+                "",
+                "Do not run `pip install semantica[explorer]` alone while -e is active; "
+                "pip will skip reinstalling and the UI will stay missing.",
+            ]
+        )
+    else:
+        lines.extend(
+            [
+                "",
+                "Reinstall the wheel that includes semantica/static/:",
+                "  pip install --force-reinstall 'semantica[explorer]==0.7.0'",
+            ]
+        )
+    return "\n".join(lines)
+
+
 def _find_semantica_repo_root() -> Path | None:
     """Locate a git checkout that includes the Explorer frontend sources."""
     explicit = (os.environ.get("SEMANTICA_REPO_ROOT") or "").strip()
@@ -257,20 +320,17 @@ def _ensure_explorer_ui_bundle() -> None:
         _log_step(f"Explorer UI bundle built: {_static_index_path()}")
         return
 
+    diagnosis = _explain_missing_ui_when_pip_satisfied()
     on_cai = bool(os.environ.get("CDSW_APP_PORT"))
-    message = (
-        "Explorer UI bundle missing (semantica/static/index.html).\n"
-        "  • Git deploy from this repo: ensure Node.js/npm are available (auto-build runs on startup), or run:\n"
-        "      cd explorer && npm ci && npm run build\n"
-        "  • Or install the PyPI wheel with the pre-built UI:\n"
-        "      pip install 'semantica[explorer]==0.7.0'\n"
-        "  • Or use deploy/cloudera/inference-app/Dockerfile (multi-stage build).\n"
-        "Set SEMANTICA_SKIP_UI_BUILD=true to skip auto-build and serve /docs only."
-    )
     if on_cai:
-        print(f"ERROR: {message}", file=sys.stderr, flush=True)
+        print("ERROR: Explorer UI bundle missing.\n", file=sys.stderr, flush=True)
+        print(diagnosis, file=sys.stderr, flush=True)
         raise SystemExit(1)
-    print(f"WARNING: {message}\nAPI /docs will still work.", file=sys.stderr, flush=True)
+    print(
+        f"WARNING: Explorer UI bundle missing.\n{diagnosis}\nAPI /docs will still work.",
+        file=sys.stderr,
+        flush=True,
+    )
 
 
 def main() -> None:

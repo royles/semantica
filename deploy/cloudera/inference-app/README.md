@@ -75,6 +75,7 @@ curl -s "http://127.0.0.1:${CDSW_APP_PORT}/api/health"
 | Logs stop after “CAI SSO mode…” | Wait 1–2 min for Explorer imports; newer logs show each step. Check stderr for tracebacks. |
 | Exits immediately | Set **`CDSW_APP_PORT`** in the job/application environment |
 | “Explorer UI not available” page | Install **`semantica[explorer]`** from PyPI, use the **Dockerfile**, or build/auto-build the frontend (see **Deploy** above) |
+| `pip install semantica[explorer]` says satisfied, UI still missing | You likely have **`pip install -e .`** — editable installs skip the PyPI UI bundle. Run **`cd explorer && npm ci && npm run build`**, or **`pip uninstall -y semantica && pip install --force-reinstall 'semantica[explorer]==0.7.0'`** |
 | Empty dashboard (server up) | `SEMANTICA_ALLOW_ANONYMOUS=true`; do not rely on `SEMANTICA_API_KEY` alone for the browser |
 | App never opens in CAI grid | Set **`CDSW_APP_POLLING_ENDPOINT=/healthcheck`**; confirm **`curl http://127.0.0.1:$CDSW_APP_PORT/healthcheck`** inside the pod |
 | Proxy 502 | Confirm **`127.0.0.1`** + **`CDSW_APP_PORT`**, not `0.0.0.0` or a different env var for the frontend |
