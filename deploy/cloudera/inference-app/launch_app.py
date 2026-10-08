@@ -2,7 +2,7 @@
 """
 Cloudera AI Inference application entrypoint for Semantica Knowledge Explorer.
 
-Listens on APP_PORT (CAI sets this to 8080). See cloudera/cai/inference-app/README.md.
+Listens on APP_PORT (CAI sets this to 8080). See deploy/cloudera/inference-app/README.md.
 """
 
 from __future__ import annotations

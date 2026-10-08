@@ -2,18 +2,18 @@
 
 Deploy Semantica **Knowledge Explorer** on [Cloudera AI Inference application serving](https://docs.cloudera.com/machine-learning/cloud/ai-inference/topics/ml-caii-application-deploy.html).
 
-Parent index: [`cloudera/README.md`](../../README.md).
+Index: [`deploy/cloudera/README.md`](../README.md).
 
 ## CAI requirements
 
 - Process listens on **`APP_PORT`** (**8080**).
 - Use a **new** Inference service instance created for Applications.
-- **Git entrypoint:** `cloudera/cai/inference-app/launch_app.py`
+- **Git entrypoint:** `deploy/cloudera/inference-app/launch_app.py`
 
 ## Git deploy
 
 1. Cloudera console → **Cloudera AI** → **Applications** → **Deploy Application**.
-2. Source **Git** — repo URL, branch, entrypoint **`cloudera/cai/inference-app/launch_app.py`**.
+2. Source **Git** — repo URL, branch, entrypoint **`deploy/cloudera/inference-app/launch_app.py`**.
 3. Ensure CAI can install deps from **`requirements.txt`** (copy [`requirements.txt`](requirements.txt) to the repo root on your deploy branch if the platform only reads root).
 4. Auth type **SSO** for the web UI.
 5. Set **`SEMANTICA_API_KEY`** in application environment variables.
@@ -27,7 +27,7 @@ Parent index: [`cloudera/README.md`](../../README.md).
 ## Docker deploy
 
 ```bash
-docker build -f cloudera/cai/inference-app/Dockerfile -t <registry>/semantica-knowledge-explorer-cai:<tag> .
+docker build -f deploy/cloudera/inference-app/Dockerfile -t <registry>/semantica-knowledge-explorer-cai:<tag> .
 docker push <registry>/semantica-knowledge-explorer-cai:<tag>
 ```
 
@@ -36,6 +36,6 @@ docker push <registry>/semantica-knowledge-explorer-cai:<tag>
 ```bash
 pip install -e ".[explorer]"
 export APP_PORT=8080 APP_URL=http://127.0.0.1:8080 SEMANTICA_ALLOW_ANONYMOUS=true
-python cloudera/cai/inference-app/launch_app.py
+python deploy/cloudera/inference-app/launch_app.py
 curl -s http://127.0.0.1:8080/api/health
 ```
