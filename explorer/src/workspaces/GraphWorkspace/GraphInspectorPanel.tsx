@@ -49,7 +49,23 @@ export interface GraphInspectorPanelProps {
   onMarkdownDirtyChange?: (dirty: boolean) => void;
 }
 
-const PROVENANCE_KEYS = ["source", "source_url", "pmid", "pmids", "evidence", "provenance", "confidence"] as const;
+const PROVENANCE_KEYS = ["source", "source_url", "references", "pmid", "pmids", "evidence", "provenance", "confidence"] as const;
+
+const CORE_NODE_KEYS = new Set([
+  "x", "y", "valid_from", "valid_until", "content", "name", "title", "description", "references",
+  "source", "source_url", "source_urls", "pmid", "pmids", "evidence", "provenance", "confidence",
+]);
+
+function referenceUrlList(properties: Record<string, unknown>): string[] {
+  const refs = properties.references;
+  if (Array.isArray(refs)) {
+    return refs.filter((entry): entry is string => typeof entry === "string" && entry.length > 0);
+  }
+  if (typeof properties.source_url === "string" && properties.source_url) {
+    return [properties.source_url];
+  }
+  return [];
+}
 
 function sourceAttribution(properties: Record<string, unknown>) {
   return PROVENANCE_KEYS
@@ -367,14 +383,17 @@ export function GraphInspectorPanel({
   const attribution = sourceAttribution(properties);
   const accentColor = attributes?.color || "#58a6ff";
   const propertyEntries = Object.entries(properties).filter(
-    ([key]) =>
-      !["x","y","valid_from","valid_until","content","source","source_url","pmid","pmids","evidence","provenance","confidence"].includes(key),
+    ([key]) => !CORE_NODE_KEYS.has(key),
   );
-  const nodeContent = (typeof attributes?.content === "string" && attributes.content)
-    ? attributes.content
-    : (typeof properties.content === "string" && properties.content)
-    ? properties.content
-    : "";
+  const referenceLinks = referenceUrlList(properties);
+  const nodeContent =
+    (typeof properties.description === "string" && properties.description)
+      ? properties.description
+      : (typeof attributes?.content === "string" && attributes.content)
+        ? attributes.content
+        : (typeof properties.content === "string" && properties.content)
+          ? properties.content
+          : "";
 
   return (
     <aside style={{ padding: 24, display: "flex", flexDirection: "column", gap: 18 }}>
@@ -421,7 +440,7 @@ export function GraphInspectorPanel({
 
       {/* Canonical nodes remain editable even when their current body is empty. */}
       <details className="node-panel-collapse" open>
-        <summary className="node-panel-summary">Content</summary>
+        <summary className="node-panel-summary">Description</summary>
         <div className="node-panel-body" style={{ marginTop: 8 }}>
           <MarkdownContentViewer
             content={nodeContent}
@@ -431,6 +450,21 @@ export function GraphInspectorPanel({
           />
         </div>
       </details>
+
+      {referenceLinks.length ? (
+        <details className="node-panel-collapse" open>
+          <summary className="node-panel-summary">References</summary>
+          <ul style={{ margin: "8px 0 0", paddingLeft: 18, fontSize: 12, lineHeight: 1.6 }}>
+            {referenceLinks.map((url) => (
+              <li key={url} style={{ wordBreak: "break-all" }}>
+                <a href={url} target="_blank" rel="noreferrer noopener" style={{ color: GRAPH_THEME.palette.accent.selected }}>
+                  {url}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </details>
+      ) : null}
 
       {/* Actions */}
       <section style={sectionStyle}>

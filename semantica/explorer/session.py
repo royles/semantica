@@ -225,14 +225,20 @@ class GraphSession:
         content = node.get("content")
         if content is None:
             content = (
-                meta.get("content")
+                meta.get("title")
+                or meta.get("name")
+                or meta.get("content")
                 or meta.get("text")
                 or meta.get("label")
-                or meta.get("name")
                 or node.get("label")
                 or node.get("name")
                 or node.get("id", "")
             )
+        elif meta.get("description") and (
+            meta.get("title") or meta.get("name")
+        ):
+            # Graph label/title is separate from long-form description.
+            content = meta.get("title") or meta.get("name") or content
 
         valid_from = node.get("valid_from", meta.get("valid_from"))
         valid_until = node.get("valid_until", meta.get("valid_until"))

@@ -6,4 +6,11 @@
 | `demo_resources.json` | Generated bibliography of primary sources (`GET /api/demo/resources`) |
 | `seed_ai_capital_graph.py` | Regenerate graph + manifest: `python deploy/cloudera/inference-app/fixtures/seed_ai_capital_graph.py` |
 
-Nodes and edges include **`source`** and **`source_url`** properties for the Explorer inspector, plus inline `Sources:` URLs in `content`.
+Each node/edge uses structured attributes:
+
+| Attribute | Role |
+|-----------|------|
+| **`name`** / **`title`** | Short graph label (also stored as `content` for the canvas) |
+| **`description`** | Long-form text (no URLs embedded) |
+| **`references`** | List of citation URLs; Explorer shows a **References** panel |
+| **`source_url`** | Primary URL (legacy provenance field, first reference) |

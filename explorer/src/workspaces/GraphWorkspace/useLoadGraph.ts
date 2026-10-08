@@ -516,7 +516,11 @@ export function useLoadGraph(options: UseLoadGraphOptions = {}) {
       const draftAttributes = fetchedNodes.map((node) => ({
         id: node.id,
         attributes: {
-          label: node.content || node.id,
+          label:
+            (typeof node.properties?.name === "string" && node.properties.name) ||
+            (typeof node.properties?.title === "string" && node.properties.title) ||
+            node.content ||
+            node.id,
           x: 0,
           y: 0,
           nodeType: node.type,

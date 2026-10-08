@@ -1,834 +1,1142 @@
 {
-  "graph_id": "c432e7ec-e9c3-4a8d-9791-ae6a72e14a17",
+  "graph_id": "26975cc6-b1ca-4d30-95fb-0d82d37985fd",
   "nodes": [
     {
       "id": "demo_disclaimer",
       "type": "metadata",
       "properties": {
+        "name": "About this demo graph",
+        "title": "About this demo graph",
+        "description": "Semantica Explorer demo graph for Cloudera AI. Nodes and edges summarize public filings, company press releases, and major news reports. Amounts use the units stated in each source (USD unless noted). Not investment advice.",
+        "references": [
+          "https://openai.com/index/announcing-the-stargate-project/",
+          "https://www.sec.gov/Archives/edgar/data/789019/000119312525256310/msft-ex99_2.htm"
+        ],
         "source_url": "https://openai.com/index/announcing-the-stargate-project/",
-        "source": "https://openai.com/index/announcing-the-stargate-project/ | https://www.sec.gov/Archives/edgar/data/789019/000119312525256310/msft-ex99_2.htm",
-        "content": "Semantica Explorer demo graph for Cloudera AI. Nodes and edges summarize public filings, company press releases, and major news reports. Amounts use the units stated in each source (USD unless noted). Not investment advice. Sources: https://openai.com/index/announcing-the-stargate-project/ | https://www.sec.gov/Archives/edgar/data/789019/000119312525256310/msft-ex99_2.htm"
+        "content": "About this demo graph"
       }
     },
     {
       "id": "openai",
       "type": "company",
       "properties": {
+        "name": "OpenAI",
+        "title": "OpenAI",
+        "description": "developer of GPT and related frontier models; Microsoft minority shareholder; Stargate operational partner.",
+        "references": [
+          "https://openai.com/index/announcing-the-stargate-project/",
+          "https://www.sec.gov/Archives/edgar/data/789019/000119312525256310/msft-ex99_2.htm"
+        ],
         "source_url": "https://openai.com/index/announcing-the-stargate-project/",
-        "source": "https://openai.com/index/announcing-the-stargate-project/ | https://www.sec.gov/Archives/edgar/data/789019/000119312525256310/msft-ex99_2.htm",
-        "content": "OpenAI — developer of GPT and related frontier models; Microsoft minority shareholder; Stargate operational partner. Sources: https://openai.com/index/announcing-the-stargate-project/ | https://www.sec.gov/Archives/edgar/data/789019/000119312525256310/msft-ex99_2.htm"
+        "content": "OpenAI"
       }
     },
     {
       "id": "microsoft",
       "type": "company",
       "properties": {
+        "name": "Microsoft",
+        "title": "Microsoft",
+        "description": "Azure cloud; ~27% OpenAI PBC stake (as-converted, Oct 2025 recap); Mistral and Inflection partnerships.",
+        "references": [
+          "https://www.sec.gov/Archives/edgar/data/789019/000119312525256310/msft-ex99_2.htm",
+          "https://azure.microsoft.com/en-us/blog/microsoft-and-mistral-ai-announce-new-partnership-to-accelerate-ai-innovation-and-introduce-mistral-large-first-on-azure/"
+        ],
         "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256310/msft-ex99_2.htm",
-        "source": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256310/msft-ex99_2.htm | https://azure.microsoft.com/en-us/blog/microsoft-and-mistral-ai-announce-new-partnership-to-accelerate-ai-innovation-and-introduce-mistral-large-first-on-azure/",
-        "content": "Microsoft — Azure cloud; ~27% OpenAI PBC stake (as-converted, Oct 2025 recap); Mistral and Inflection partnerships. Sources: https://www.sec.gov/Archives/edgar/data/789019/000119312525256310/msft-ex99_2.htm | https://azure.microsoft.com/en-us/blog/microsoft-and-mistral-ai-announce-new-partnership-to-accelerate-ai-innovation-and-introduce-mistral-large-first-on-azure/"
+        "content": "Microsoft"
       }
     },
     {
       "id": "anthropic",
       "type": "company",
       "properties": {
+        "name": "Anthropic",
+        "title": "Anthropic",
+        "description": "Claude models; AWS primary training partner; Google Cloud TPU customer.",
+        "references": [
+          "https://www.aboutamazon.com/news/company-news/amazon-anthropic-ai-investment",
+          "https://www.googlecloudpresscorner.com/2023-11-08-Google-Announces-Expansion-of-AI-Partnership-with-Anthropic"
+        ],
         "source_url": "https://www.aboutamazon.com/news/company-news/amazon-anthropic-ai-investment",
-        "source": "https://www.aboutamazon.com/news/company-news/amazon-anthropic-ai-investment | https://www.googlecloudpresscorner.com/2023-11-08-Google-Announces-Expansion-of-AI-Partnership-with-Anthropic",
-        "content": "Anthropic — Claude models; AWS primary training partner; Google Cloud TPU customer. Sources: https://www.aboutamazon.com/news/company-news/amazon-anthropic-ai-investment | https://www.googlecloudpresscorner.com/2023-11-08-Google-Announces-Expansion-of-AI-Partnership-with-Anthropic"
+        "content": "Anthropic"
       }
     },
     {
       "id": "amazon",
       "type": "company",
       "properties": {
+        "name": "Amazon",
+        "title": "Amazon",
+        "description": "parent of AWS; completed $4B Anthropic investment (Mar 2024).",
+        "references": [
+          "https://www.aboutamazon.com/news/company-news/amazon-anthropic-ai-investment",
+          "https://press.aboutamazon.com/2023/9/amazon-and-anthropic-announce-strategic-collaboration-to-advance-generative-ai"
+        ],
         "source_url": "https://www.aboutamazon.com/news/company-news/amazon-anthropic-ai-investment",
-        "source": "https://www.aboutamazon.com/news/company-news/amazon-anthropic-ai-investment | https://press.aboutamazon.com/2023/9/amazon-and-anthropic-announce-strategic-collaboration-to-advance-generative-ai",
-        "content": "Amazon — parent of AWS; completed $4B Anthropic investment (Mar 2024). Sources: https://www.aboutamazon.com/news/company-news/amazon-anthropic-ai-investment | https://press.aboutamazon.com/2023/9/amazon-and-anthropic-announce-strategic-collaboration-to-advance-generative-ai"
+        "content": "Amazon"
       }
     },
     {
       "id": "google",
       "type": "company",
       "properties": {
+        "name": "Google",
+        "title": "Google",
+        "description": "Alphabet / Google — Google Cloud; up to $2B Anthropic commitment (Oct 2023 reporting).",
+        "references": [
+          "https://www.reuters.com/technology/google-agrees-invest-up-2-bln-openai-rival-anthropic-wsj-2023-10-27/",
+          "https://www.googlecloudpresscorner.com/2023-11-08-Google-Announces-Expansion-of-AI-Partnership-with-Anthropic"
+        ],
         "source_url": "https://www.reuters.com/technology/google-agrees-invest-up-2-bln-openai-rival-anthropic-wsj-2023-10-27/",
-        "source": "https://www.reuters.com/technology/google-agrees-invest-up-2-bln-openai-rival-anthropic-wsj-2023-10-27/ | https://www.googlecloudpresscorner.com/2023-11-08-Google-Announces-Expansion-of-AI-Partnership-with-Anthropic",
-        "content": "Alphabet / Google — Google Cloud; up to $2B Anthropic commitment (Oct 2023 reporting). Sources: https://www.reuters.com/technology/google-agrees-invest-up-2-bln-openai-rival-anthropic-wsj-2023-10-27/ | https://www.googlecloudpresscorner.com/2023-11-08-Google-Announces-Expansion-of-AI-Partnership-with-Anthropic"
+        "content": "Google"
       }
     },
     {
       "id": "nvidia",
       "type": "company",
       "properties": {
+        "name": "NVIDIA",
+        "title": "NVIDIA",
+        "description": "AI accelerators and software; OpenAI collaborator since 2016; Stargate technology partner.",
+        "references": [
+          "https://openai.com/index/announcing-the-stargate-project/",
+          "https://investor.nvidia.com/"
+        ],
         "source_url": "https://openai.com/index/announcing-the-stargate-project/",
-        "source": "https://openai.com/index/announcing-the-stargate-project/ | https://investor.nvidia.com/",
-        "content": "NVIDIA — AI accelerators and software; OpenAI collaborator since 2016; Stargate technology partner. Sources: https://openai.com/index/announcing-the-stargate-project/ | https://investor.nvidia.com/"
+        "content": "NVIDIA"
       }
     },
     {
       "id": "oracle",
       "type": "company",
       "properties": {
+        "name": "Oracle",
+        "title": "Oracle",
+        "description": "cloud infrastructure; Stargate initial equity funder and technology partner.",
+        "references": [
+          "https://openai.com/index/announcing-the-stargate-project/",
+          "https://group.softbank/en/news/press/20250122"
+        ],
         "source_url": "https://openai.com/index/announcing-the-stargate-project/",
-        "source": "https://openai.com/index/announcing-the-stargate-project/ | https://group.softbank/en/news/press/20250122",
-        "content": "Oracle — cloud infrastructure; Stargate initial equity funder and technology partner. Sources: https://openai.com/index/announcing-the-stargate-project/ | https://group.softbank/en/news/press/20250122"
+        "content": "Oracle"
       }
     },
     {
       "id": "softbank",
       "type": "investor",
       "properties": {
+        "name": "SoftBank",
+        "title": "SoftBank",
+        "description": "SoftBank Group — Stargate lead financial partner; Masa Son chairman; Arm owner.",
+        "references": [
+          "https://group.softbank/en/news/press/20250122",
+          "https://www.govinfo.gov/content/pkg/DCPD-202500157/html/DCPD-202500157.htm"
+        ],
         "source_url": "https://group.softbank/en/news/press/20250122",
-        "source": "https://group.softbank/en/news/press/20250122 | https://www.govinfo.gov/content/pkg/DCPD-202500157/html/DCPD-202500157.htm",
-        "content": "SoftBank Group — Stargate lead financial partner; Masa Son chairman; Arm owner. Sources: https://group.softbank/en/news/press/20250122 | https://www.govinfo.gov/content/pkg/DCPD-202500157/html/DCPD-202500157.htm"
+        "content": "SoftBank"
       }
     },
     {
       "id": "mgx",
       "type": "investor",
       "properties": {
+        "name": "MGX",
+        "title": "MGX",
+        "description": "Abu Dhabi investment vehicle; listed as initial Stargate equity funder.",
+        "references": [
+          "https://openai.com/index/announcing-the-stargate-project/"
+        ],
         "source_url": "https://openai.com/index/announcing-the-stargate-project/",
-        "source": "https://openai.com/index/announcing-the-stargate-project/",
-        "content": "MGX — Abu Dhabi investment vehicle; listed as initial Stargate equity funder. Sources: https://openai.com/index/announcing-the-stargate-project/"
+        "content": "MGX"
       }
     },
     {
       "id": "mistral",
       "type": "company",
       "properties": {
+        "name": "Mistral AI",
+        "title": "Mistral AI",
+        "description": "French frontier lab; Azure distribution and Microsoft €15M investment (Feb 2024).",
+        "references": [
+          "https://azure.microsoft.com/en-us/blog/microsoft-and-mistral-ai-announce-new-partnership-to-accelerate-ai-innovation-and-introduce-mistral-large-first-on-azure/",
+          "https://techcrunch.com/2024/02/27/microsoft-made-a-16-million-investment-in-mistral-ai/"
+        ],
         "source_url": "https://azure.microsoft.com/en-us/blog/microsoft-and-mistral-ai-announce-new-partnership-to-accelerate-ai-innovation-and-introduce-mistral-large-first-on-azure/",
-        "source": "https://azure.microsoft.com/en-us/blog/microsoft-and-mistral-ai-announce-new-partnership-to-accelerate-ai-innovation-and-introduce-mistral-large-first-on-azure/ | https://techcrunch.com/2024/02/27/microsoft-made-a-16-million-investment-in-mistral-ai/",
-        "content": "Mistral AI — French frontier lab; Azure distribution and Microsoft €15M investment (Feb 2024). Sources: https://azure.microsoft.com/en-us/blog/microsoft-and-mistral-ai-announce-new-partnership-to-accelerate-ai-innovation-and-introduce-mistral-large-first-on-azure/ | https://techcrunch.com/2024/02/27/microsoft-made-a-16-million-investment-in-mistral-ai/"
+        "content": "Mistral AI"
       }
     },
     {
       "id": "inflection_ai",
       "type": "company",
       "properties": {
+        "name": "Inflection AI",
+        "title": "Inflection AI",
+        "description": "Pi assistant developer; 2024 licensing deal with Microsoft after staff hire.",
+        "references": [
+          "https://www.reuters.com/technology/microsoft-agreed-pay-inflection-650-mln-while-hiring-its-staff-information-2024-03-21/",
+          "https://assets.publishing.service.gov.uk/media/6719ff5f549f63039436b3c8/__Full_text_decision__.pdf"
+        ],
         "source_url": "https://www.reuters.com/technology/microsoft-agreed-pay-inflection-650-mln-while-hiring-its-staff-information-2024-03-21/",
-        "source": "https://www.reuters.com/technology/microsoft-agreed-pay-inflection-650-mln-while-hiring-its-staff-information-2024-03-21/ | https://assets.publishing.service.gov.uk/media/6719ff5f549f63039436b3c8/__Full_text_decision__.pdf",
-        "content": "Inflection AI — Pi assistant developer; 2024 licensing deal with Microsoft after staff hire. Sources: https://www.reuters.com/technology/microsoft-agreed-pay-inflection-650-mln-while-hiring-its-staff-information-2024-03-21/ | https://assets.publishing.service.gov.uk/media/6719ff5f549f63039436b3c8/__Full_text_decision__.pdf"
+        "content": "Inflection AI"
       }
     },
     {
       "id": "character_ai",
       "type": "company",
       "properties": {
+        "name": "Character.AI",
+        "title": "Character.AI",
+        "description": "consumer chatbots; Aug 2024 non-exclusive Google license; Alphabet recorded $2.7B cash payment in Q3 2024 filings.",
+        "references": [
+          "https://www.reuters.com/technology/artificial-intelligence/google-hires-characterai-cofounders-licenses-its-models-information-reports-2024-08-02/",
+          "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000118/R16.htm"
+        ],
         "source_url": "https://www.reuters.com/technology/artificial-intelligence/google-hires-characterai-cofounders-licenses-its-models-information-reports-2024-08-02/",
-        "source": "https://www.reuters.com/technology/artificial-intelligence/google-hires-characterai-cofounders-licenses-its-models-information-reports-2024-08-02/ | https://www.sec.gov/Archives/edgar/data/1652044/000165204424000118/R16.htm",
-        "content": "Character.AI — consumer chatbots; Aug 2024 non-exclusive Google license; Alphabet recorded $2.7B cash payment in Q3 2024 filings. Sources: https://www.reuters.com/technology/artificial-intelligence/google-hires-characterai-cofounders-licenses-its-models-information-reports-2024-08-02/ | https://www.sec.gov/Archives/edgar/data/1652044/000165204424000118/R16.htm"
+        "content": "Character.AI"
       }
     },
     {
       "id": "amd",
       "type": "company",
       "properties": {
+        "name": "AMD",
+        "title": "AMD",
+        "description": "MI300 accelerators offered on Azure alongside NVIDIA options.",
+        "references": [
+          "https://azure.microsoft.com/en-us/blog/introducing-the-new-ai-accelerator-optimized-vms-with-amd-mi300x/"
+        ],
         "source_url": "https://azure.microsoft.com/en-us/blog/introducing-the-new-ai-accelerator-optimized-vms-with-amd-mi300x/",
-        "source": "https://azure.microsoft.com/en-us/blog/introducing-the-new-ai-accelerator-optimized-vms-with-amd-mi300x/",
-        "content": "AMD — MI300 accelerators offered on Azure alongside NVIDIA options. Sources: https://azure.microsoft.com/en-us/blog/introducing-the-new-ai-accelerator-optimized-vms-with-amd-mi300x/"
+        "content": "AMD"
       }
     },
     {
       "id": "intel",
       "type": "company",
       "properties": {
+        "name": "Intel",
+        "title": "Intel",
+        "description": "Gaudi AI accelerators available on Azure and AWS.",
+        "references": [
+          "https://www.intel.com/content/www/us/en/newsroom/news/intel-gaudi-3-ai-accelerator.html"
+        ],
         "source_url": "https://www.intel.com/content/www/us/en/newsroom/news/intel-gaudi-3-ai-accelerator.html",
-        "source": "https://www.intel.com/content/www/us/en/newsroom/news/intel-gaudi-3-ai-accelerator.html",
-        "content": "Intel — Gaudi AI accelerators available on Azure and AWS. Sources: https://www.intel.com/content/www/us/en/newsroom/news/intel-gaudi-3-ai-accelerator.html"
+        "content": "Intel"
       }
     },
     {
       "id": "apple",
       "type": "company",
       "properties": {
+        "name": "Apple",
+        "title": "Apple",
+        "description": "Apple Intelligence platform; uses Google Cloud for some AI features per reporting.",
+        "references": [
+          "https://www.reuters.com/technology/apple-holds-talks-with-google-bring-gemini-ai-iphone-2024-03-18/"
+        ],
         "source_url": "https://www.reuters.com/technology/apple-holds-talks-with-google-bring-gemini-ai-iphone-2024-03-18/",
-        "source": "https://www.reuters.com/technology/apple-holds-talks-with-google-bring-gemini-ai-iphone-2024-03-18/",
-        "content": "Apple — Apple Intelligence platform; uses Google Cloud for some AI features per reporting. Sources: https://www.reuters.com/technology/apple-holds-talks-with-google-bring-gemini-ai-iphone-2024-03-18/"
+        "content": "Apple"
       }
     },
     {
       "id": "coreweave",
       "type": "company",
       "properties": {
+        "name": "CoreWeave",
+        "title": "CoreWeave",
+        "description": "GPU-focused cloud; NVIDIA-backed neocloud; OpenAI capacity supplier (reporting).",
+        "references": [
+          "https://www.nvidia.com/en-us/geforce/news/coreweave-secures-2-3b-debt-financing-for-ai-infrastructure/",
+          "https://www.reuters.com/technology/artificial-intelligence/openai-uses-nvidia-rival-chips-amid-chip-shortage-2024-03-20/"
+        ],
         "source_url": "https://www.nvidia.com/en-us/geforce/news/coreweave-secures-2-3b-debt-financing-for-ai-infrastructure/",
-        "source": "https://www.nvidia.com/en-us/geforce/news/coreweave-secures-2-3b-debt-financing-for-ai-infrastructure/ | https://www.reuters.com/technology/artificial-intelligence/openai-uses-nvidia-rival-chips-amid-chip-shortage-2024-03-20/",
-        "content": "CoreWeave — GPU-focused cloud; NVIDIA-backed neocloud; OpenAI capacity supplier (reporting). Sources: https://www.nvidia.com/en-us/geforce/news/coreweave-secures-2-3b-debt-financing-for-ai-infrastructure/ | https://www.reuters.com/technology/artificial-intelligence/openai-uses-nvidia-rival-chips-amid-chip-shortage-2024-03-20/"
+        "content": "CoreWeave"
       }
     },
     {
       "id": "meta",
       "type": "company",
       "properties": {
+        "name": "Meta",
+        "title": "Meta",
+        "description": "Llama models; disclosed multi-billion-dollar AI infrastructure capex.",
+        "references": [
+          "https://investor.atmeta.com/investor-news/press-release-details/2024/Meta-Reports-Fourth-Quarter-and-Full-Year-2023-Results/default.aspx"
+        ],
         "source_url": "https://investor.atmeta.com/investor-news/press-release-details/2024/Meta-Reports-Fourth-Quarter-and-Full-Year-2023-Results/default.aspx",
-        "source": "https://investor.atmeta.com/investor-news/press-release-details/2024/Meta-Reports-Fourth-Quarter-and-Full-Year-2023-Results/default.aspx",
-        "content": "Meta — Llama models; disclosed multi-billion-dollar AI infrastructure capex. Sources: https://investor.atmeta.com/investor-news/press-release-details/2024/Meta-Reports-Fourth-Quarter-and-Full-Year-2023-Results/default.aspx"
+        "content": "Meta"
       }
     },
     {
       "id": "xai",
       "type": "company",
       "properties": {
+        "name": "xAI",
+        "title": "xAI",
+        "description": "Grok developer; raised billions from private investors (2024–2025 reporting).",
+        "references": [
+          "https://www.reuters.com/technology/artificial-intelligence/musks-xai-raises-6-billion-funding-valuation-24-billion-2024-05-26/"
+        ],
         "source_url": "https://www.reuters.com/technology/artificial-intelligence/musks-xai-raises-6-billion-funding-valuation-24-billion-2024-05-26/",
-        "source": "https://www.reuters.com/technology/artificial-intelligence/musks-xai-raises-6-billion-funding-valuation-24-billion-2024-05-26/",
-        "content": "xAI — Grok developer; raised billions from private investors (2024–2025 reporting). Sources: https://www.reuters.com/technology/artificial-intelligence/musks-xai-raises-6-billion-funding-valuation-24-billion-2024-05-26/"
+        "content": "xAI"
       }
     },
     {
       "id": "cohere",
       "type": "company",
       "properties": {
+        "name": "Cohere",
+        "title": "Cohere",
+        "description": "enterprise LLMs; Oracle and NVIDIA among strategic investors (company disclosures).",
+        "references": [
+          "https://cohere.com/blog/series-d",
+          "https://www.oracle.com/news/announcement/oracle-invests-in-cohere-2023-06-08/"
+        ],
         "source_url": "https://cohere.com/blog/series-d",
-        "source": "https://cohere.com/blog/series-d | https://www.oracle.com/news/announcement/oracle-invests-in-cohere-2023-06-08/",
-        "content": "Cohere — enterprise LLMs; Oracle and NVIDIA among strategic investors (company disclosures). Sources: https://cohere.com/blog/series-d | https://www.oracle.com/news/announcement/oracle-invests-in-cohere-2023-06-08/"
+        "content": "Cohere"
       }
     },
     {
       "id": "databricks",
       "type": "company",
       "properties": {
+        "name": "Databricks",
+        "title": "Databricks",
+        "description": "data/AI platform; mutual strategic investment with NVIDIA (2023).",
+        "references": [
+          "https://www.nvidia.com/en-us/about-nvidia/press-releases/2023/nvidia-databricks-strategic-partnership/"
+        ],
         "source_url": "https://www.nvidia.com/en-us/about-nvidia/press-releases/2023/nvidia-databricks-strategic-partnership/",
-        "source": "https://www.nvidia.com/en-us/about-nvidia/press-releases/2023/nvidia-databricks-strategic-partnership/",
-        "content": "Databricks — data/AI platform; mutual strategic investment with NVIDIA (2023). Sources: https://www.nvidia.com/en-us/about-nvidia/press-releases/2023/nvidia-databricks-strategic-partnership/"
+        "content": "Databricks"
       }
     },
     {
       "id": "arm",
       "type": "company",
       "properties": {
+        "name": "Arm",
+        "title": "Arm",
+        "description": "Arm Holdings — CPU IP; SoftBank-majority; Stargate initial technology partner.",
+        "references": [
+          "https://openai.com/index/announcing-the-stargate-project/"
+        ],
         "source_url": "https://openai.com/index/announcing-the-stargate-project/",
-        "source": "https://openai.com/index/announcing-the-stargate-project/",
-        "content": "Arm Holdings — CPU IP; SoftBank-majority; Stargate initial technology partner. Sources: https://openai.com/index/announcing-the-stargate-project/"
+        "content": "Arm"
       }
     },
     {
       "id": "tsmc",
       "type": "company",
       "properties": {
+        "name": "TSMC",
+        "title": "TSMC",
+        "description": "foundry manufacturing NVIDIA and other AI accelerators.",
+        "references": [
+          "https://www.tsmc.com/static/abouttsmcaz/nasdaq_ir/annual-reports/2023/english/index.html"
+        ],
         "source_url": "https://www.tsmc.com/static/abouttsmcaz/nasdaq_ir/annual-reports/2023/english/index.html",
-        "source": "https://www.tsmc.com/static/abouttsmcaz/nasdaq_ir/annual-reports/2023/english/index.html",
-        "content": "TSMC — foundry manufacturing NVIDIA and other AI accelerators. Sources: https://www.tsmc.com/static/abouttsmcaz/nasdaq_ir/annual-reports/2023/english/index.html"
+        "content": "TSMC"
       }
     },
     {
       "id": "stargate_project",
       "type": "initiative",
       "properties": {
+        "name": "Stargate Project",
+        "title": "Stargate Project",
+        "description": "JV announced Jan 21, 2025; up to $500B U.S. AI infrastructure intent over four years; $100B immediate deployment stated by partners.",
+        "references": [
+          "https://openai.com/index/announcing-the-stargate-project/",
+          "https://www.govinfo.gov/content/pkg/DCPD-202500157/html/DCPD-202500157.htm"
+        ],
         "source_url": "https://openai.com/index/announcing-the-stargate-project/",
-        "source": "https://openai.com/index/announcing-the-stargate-project/ | https://www.govinfo.gov/content/pkg/DCPD-202500157/html/DCPD-202500157.htm",
-        "content": "Stargate Project — JV announced Jan 21, 2025; up to $500B U.S. AI infrastructure intent over four years; $100B immediate deployment stated by partners. Sources: https://openai.com/index/announcing-the-stargate-project/ | https://www.govinfo.gov/content/pkg/DCPD-202500157/html/DCPD-202500157.htm"
+        "content": "Stargate Project"
       }
     },
     {
       "id": "azure_openai_service",
       "type": "product",
       "properties": {
+        "name": "Azure OpenAI Service",
+        "title": "Azure OpenAI Service",
+        "description": "Microsoft distribution of OpenAI models to enterprise.",
+        "references": [
+          "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm"
+        ],
         "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
-        "source": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
-        "content": "Azure OpenAI Service — Microsoft distribution of OpenAI models to enterprise. Sources: https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm"
+        "content": "Azure OpenAI Service"
       }
     },
     {
       "id": "amazon_bedrock",
       "type": "product",
       "properties": {
+        "name": "Amazon Bedrock",
+        "title": "Amazon Bedrock",
+        "description": "AWS managed API for foundation models including Anthropic Claude.",
+        "references": [
+          "https://press.aboutamazon.com/2023/9/amazon-and-anthropic-announce-strategic-collaboration-to-advance-generative-ai"
+        ],
         "source_url": "https://press.aboutamazon.com/2023/9/amazon-and-anthropic-announce-strategic-collaboration-to-advance-generative-ai",
-        "source": "https://press.aboutamazon.com/2023/9/amazon-and-anthropic-announce-strategic-collaboration-to-advance-generative-ai",
-        "content": "Amazon Bedrock — AWS managed API for foundation models including Anthropic Claude. Sources: https://press.aboutamazon.com/2023/9/amazon-and-anthropic-announce-strategic-collaboration-to-advance-generative-ai"
+        "content": "Amazon Bedrock"
       }
     },
     {
       "id": "founders_fund",
       "type": "investor",
       "properties": {
+        "name": "Founders Fund",
+        "title": "Founders Fund",
+        "description": "reported participant in xAI funding rounds.",
+        "references": [
+          "https://www.reuters.com/technology/artificial-intelligence/musks-xai-raises-6-billion-funding-valuation-24-billion-2024-05-26/"
+        ],
         "source_url": "https://www.reuters.com/technology/artificial-intelligence/musks-xai-raises-6-billion-funding-valuation-24-billion-2024-05-26/",
-        "source": "https://www.reuters.com/technology/artificial-intelligence/musks-xai-raises-6-billion-funding-valuation-24-billion-2024-05-26/",
-        "content": "Founders Fund — reported participant in xAI funding rounds. Sources: https://www.reuters.com/technology/artificial-intelligence/musks-xai-raises-6-billion-funding-valuation-24-billion-2024-05-26/"
+        "content": "Founders Fund"
       }
     },
     {
       "id": "sequoia_capital",
       "type": "investor",
       "properties": {
+        "name": "Sequoia Capital",
+        "title": "Sequoia Capital",
+        "description": "early Anthropic investor (company history).",
+        "references": [
+          "https://www.anthropic.com/news/anthropic-series-c"
+        ],
         "source_url": "https://www.anthropic.com/news/anthropic-series-c",
-        "source": "https://www.anthropic.com/news/anthropic-series-c",
-        "content": "Sequoia Capital — early Anthropic investor (company history). Sources: https://www.anthropic.com/news/anthropic-series-c"
+        "content": "Sequoia Capital"
       }
     },
     {
       "id": "nvidia_nventures",
       "type": "investor",
       "properties": {
+        "name": "NVentures",
+        "title": "NVentures",
+        "description": "NVIDIA venture arm; portfolio includes CoreWeave, Cohere, others.",
+        "references": [
+          "https://www.nvidia.com/en-us/about-nvidia/ventures/"
+        ],
         "source_url": "https://www.nvidia.com/en-us/about-nvidia/ventures/",
-        "source": "https://www.nvidia.com/en-us/about-nvidia/ventures/",
-        "content": "NVentures — NVIDIA venture arm; portfolio includes CoreWeave, Cohere, others. Sources: https://www.nvidia.com/en-us/about-nvidia/ventures/"
+        "content": "NVentures"
       }
     }
   ],
   "edges": [
     {
-      "id": "3e274db8-69a9-54a9-b950-e5f0f363d68a",
-      "familyId": "3e274db8-69a9-54a9-b950-e5f0f363d68a",
+      "id": "edcd643a-74e7-5bae-b124-547dac89502a",
+      "familyId": "edcd643a-74e7-5bae-b124-547dac89502a",
       "source_id": "microsoft",
       "target_id": "openai",
       "type": "funding_commitment",
       "weight": 1.0,
       "properties": {
-        "content": "Microsoft total OpenAI funding commitments $13B ($11.8B funded as of Mar 31, 2026 per filings); ~27% OpenAI Group PBC stake after Oct 2025 recap. Sources: https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/R26.htm | https://www.sec.gov/Archives/edgar/data/789019/000119312525256310/msft-ex99_2.htm",
-        "source_urls": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/R26.htm | https://www.sec.gov/Archives/edgar/data/789019/000119312525256310/msft-ex99_2.htm",
+        "content": "Funding Commitment ($13B)",
+        "name": "Funding Commitment ($13B)",
+        "title": "Funding Commitment ($13B)",
+        "description": "Microsoft total OpenAI funding commitments $13B ($11.8B funded as of Mar 31, 2026 per filings); ~27% OpenAI Group PBC stake after Oct 2025 recap.",
+        "references": [
+          "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/R26.htm",
+          "https://www.sec.gov/Archives/edgar/data/789019/000119312525256310/msft-ex99_2.htm"
+        ],
         "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/R26.htm",
-        "source": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/R26.htm | https://www.sec.gov/Archives/edgar/data/789019/000119312525256310/msft-ex99_2.htm",
         "amount_usd_b": 13,
         "instrument": "equity_method_investment",
         "status": "active"
       }
     },
     {
-      "id": "a9427a5d-9229-5949-9d45-895d961ba676",
-      "familyId": "a9427a5d-9229-5949-9d45-895d961ba676",
+      "id": "abffa0c9-0a38-5482-8ac7-5826e035f3a1",
+      "familyId": "abffa0c9-0a38-5482-8ac7-5826e035f3a1",
       "source_id": "openai",
       "target_id": "microsoft",
       "type": "azure_services_contract",
       "weight": 1.0,
       "properties": {
-        "content": "OpenAI contracted to purchase incremental $250B of Azure services (Oct 28, 2025 agreement). Sources: https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/R26.htm | https://www.sec.gov/Archives/edgar/data/789019/000119312525256310/msft-ex99_2.htm",
-        "source_urls": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/R26.htm | https://www.sec.gov/Archives/edgar/data/789019/000119312525256310/msft-ex99_2.htm",
+        "content": "Azure Services Contract ($250B)",
+        "name": "Azure Services Contract ($250B)",
+        "title": "Azure Services Contract ($250B)",
+        "description": "OpenAI contracted to purchase incremental $250B of Azure services (Oct 28, 2025 agreement).",
+        "references": [
+          "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/R26.htm",
+          "https://www.sec.gov/Archives/edgar/data/789019/000119312525256310/msft-ex99_2.htm"
+        ],
         "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/R26.htm",
-        "source": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/R26.htm | https://www.sec.gov/Archives/edgar/data/789019/000119312525256310/msft-ex99_2.htm",
         "amount_usd_b": 250,
         "instrument": "cloud_services_purchase",
         "status": "announced"
       }
     },
     {
-      "id": "7b05cf2d-4730-5720-8639-ca3c5442b79d",
-      "familyId": "7b05cf2d-4730-5720-8639-ca3c5442b79d",
+      "id": "523afac5-f01d-588a-b9ad-44768110b9e3",
+      "familyId": "523afac5-f01d-588a-b9ad-44768110b9e3",
       "source_id": "microsoft",
       "target_id": "azure_openai_service",
       "type": "operates",
       "weight": 1.0,
       "properties": {
-        "content": "Azure OpenAI Service offers OpenAI models to enterprise customers. Sources: https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
-        "source_urls": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+        "content": "Operates",
+        "name": "Operates",
+        "title": "Operates",
+        "description": "Azure OpenAI Service offers OpenAI models to enterprise customers.",
+        "references": [
+          "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm"
+        ],
         "source_url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
-        "source": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
         "instrument": "product",
         "status": "active"
       }
     },
     {
-      "id": "b14188de-16fc-5a9b-b76d-ad5382745fc5",
-      "familyId": "b14188de-16fc-5a9b-b76d-ad5382745fc5",
+      "id": "893051f3-6b68-5dde-8749-f057b7087aa8",
+      "familyId": "893051f3-6b68-5dde-8749-f057b7087aa8",
       "source_id": "amazon",
       "target_id": "anthropic",
       "type": "equity_investment",
       "weight": 1.0,
       "properties": {
-        "content": "Amazon completed $4B total investment in Anthropic ($1.25B Sep 2023 + $2.75B Mar 2024). Sources: https://www.aboutamazon.com/news/company-news/amazon-anthropic-ai-investment | https://apnews.com/article/amazon-anthropic-investment-ai-big-tech-f5108beaa33455f331010489e03586d4",
-        "source_urls": "https://www.aboutamazon.com/news/company-news/amazon-anthropic-ai-investment | https://apnews.com/article/amazon-anthropic-investment-ai-big-tech-f5108beaa33455f331010489e03586d4",
+        "content": "Equity Investment ($4B)",
+        "name": "Equity Investment ($4B)",
+        "title": "Equity Investment ($4B)",
+        "description": "Amazon completed $4B total investment in Anthropic ($1.25B Sep 2023 + $2.75B Mar 2024).",
+        "references": [
+          "https://www.aboutamazon.com/news/company-news/amazon-anthropic-ai-investment",
+          "https://apnews.com/article/amazon-anthropic-investment-ai-big-tech-f5108beaa33455f331010489e03586d4"
+        ],
         "source_url": "https://www.aboutamazon.com/news/company-news/amazon-anthropic-ai-investment",
-        "source": "https://www.aboutamazon.com/news/company-news/amazon-anthropic-ai-investment | https://apnews.com/article/amazon-anthropic-investment-ai-big-tech-f5108beaa33455f331010489e03586d4",
         "amount_usd_b": 4,
         "instrument": "equity_minority",
         "status": "completed"
       }
     },
     {
-      "id": "26f985dc-1c44-5746-9632-b6c5496a4593",
-      "familyId": "26f985dc-1c44-5746-9632-b6c5496a4593",
+      "id": "970f64b0-9394-5fa0-93f9-078567bec337",
+      "familyId": "970f64b0-9394-5fa0-93f9-078567bec337",
       "source_id": "anthropic",
       "target_id": "amazon",
       "type": "primary_cloud_and_training",
       "weight": 1.0,
       "properties": {
-        "content": "Anthropic names AWS primary cloud provider and primary training partner; uses Trainium/Inferentia. Sources: https://www.aboutamazon.com/news/aws/amazon-invests-additional-4-billion-anthropic-ai/ | https://press.aboutamazon.com/2023/9/amazon-and-anthropic-announce-strategic-collaboration-to-advance-generative-ai",
-        "source_urls": "https://www.aboutamazon.com/news/aws/amazon-invests-additional-4-billion-anthropic-ai/ | https://press.aboutamazon.com/2023/9/amazon-and-anthropic-announce-strategic-collaboration-to-advance-generative-ai",
+        "content": "Primary Cloud And Training",
+        "name": "Primary Cloud And Training",
+        "title": "Primary Cloud And Training",
+        "description": "Anthropic names AWS primary cloud provider and primary training partner; uses Trainium/Inferentia.",
+        "references": [
+          "https://www.aboutamazon.com/news/aws/amazon-invests-additional-4-billion-anthropic-ai/",
+          "https://press.aboutamazon.com/2023/9/amazon-and-anthropic-announce-strategic-collaboration-to-advance-generative-ai"
+        ],
         "source_url": "https://www.aboutamazon.com/news/aws/amazon-invests-additional-4-billion-anthropic-ai/",
-        "source": "https://www.aboutamazon.com/news/aws/amazon-invests-additional-4-billion-anthropic-ai/ | https://press.aboutamazon.com/2023/9/amazon-and-anthropic-announce-strategic-collaboration-to-advance-generative-ai",
         "instrument": "cloud_partnership",
         "status": "active"
       }
     },
     {
-      "id": "323eed2a-7458-5ebc-b2e3-eacfb6bb94ab",
-      "familyId": "323eed2a-7458-5ebc-b2e3-eacfb6bb94ab",
+      "id": "9cd7b50b-df8b-563c-941d-712f9e95e9f3",
+      "familyId": "9cd7b50b-df8b-563c-941d-712f9e95e9f3",
       "source_id": "anthropic",
       "target_id": "amazon_bedrock",
       "type": "model_distribution",
       "weight": 1.0,
       "properties": {
-        "content": "Claude models available to AWS customers via Amazon Bedrock. Sources: https://press.aboutamazon.com/2023/9/amazon-and-anthropic-announce-strategic-collaboration-to-advance-generative-ai",
-        "source_urls": "https://press.aboutamazon.com/2023/9/amazon-and-anthropic-announce-strategic-collaboration-to-advance-generative-ai",
+        "content": "Model Distribution",
+        "name": "Model Distribution",
+        "title": "Model Distribution",
+        "description": "Claude models available to AWS customers via Amazon Bedrock.",
+        "references": [
+          "https://press.aboutamazon.com/2023/9/amazon-and-anthropic-announce-strategic-collaboration-to-advance-generative-ai"
+        ],
         "source_url": "https://press.aboutamazon.com/2023/9/amazon-and-anthropic-announce-strategic-collaboration-to-advance-generative-ai",
-        "source": "https://press.aboutamazon.com/2023/9/amazon-and-anthropic-announce-strategic-collaboration-to-advance-generative-ai",
         "instrument": "distribution",
         "status": "active"
       }
     },
     {
-      "id": "2e9eb1c5-2351-5ae4-8045-fa648e9a85fa",
-      "familyId": "2e9eb1c5-2351-5ae4-8045-fa648e9a85fa",
+      "id": "e83b00bf-0222-5c26-92a5-585637041397",
+      "familyId": "e83b00bf-0222-5c26-92a5-585637041397",
       "source_id": "google",
       "target_id": "anthropic",
       "type": "convertible_note_investment",
       "weight": 1.0,
       "properties": {
-        "content": "Google agreed to invest up to $2B ($500M upfront + $1.5B over time), structured as convertible note per Anthropic spokesperson. Sources: https://www.reuters.com/technology/google-agrees-invest-up-2-bln-openai-rival-anthropic-wsj-2023-10-27/",
-        "source_urls": "https://www.reuters.com/technology/google-agrees-invest-up-2-bln-openai-rival-anthropic-wsj-2023-10-27/",
+        "content": "Convertible Note Investment ($2B)",
+        "name": "Convertible Note Investment ($2B)",
+        "title": "Convertible Note Investment ($2B)",
+        "description": "Google agreed to invest up to $2B ($500M upfront + $1.5B over time), structured as convertible note per Anthropic spokesperson.",
+        "references": [
+          "https://www.reuters.com/technology/google-agrees-invest-up-2-bln-openai-rival-anthropic-wsj-2023-10-27/"
+        ],
         "source_url": "https://www.reuters.com/technology/google-agrees-invest-up-2-bln-openai-rival-anthropic-wsj-2023-10-27/",
-        "source": "https://www.reuters.com/technology/google-agrees-invest-up-2-bln-openai-rival-anthropic-wsj-2023-10-27/",
         "amount_usd_b": 2,
         "instrument": "convertible_note",
         "status": "announced"
       }
     },
     {
-      "id": "275e9308-58d1-5815-b088-74c8886337b5",
-      "familyId": "275e9308-58d1-5815-b088-74c8886337b5",
+      "id": "f95e32be-8a87-59a7-9315-9cc71ba6cece",
+      "familyId": "f95e32be-8a87-59a7-9315-9cc71ba6cece",
       "source_id": "anthropic",
       "target_id": "google",
       "type": "cloud_compute",
       "weight": 1.0,
       "properties": {
-        "content": "Anthropic expanded Google Cloud partnership; uses Cloud TPU v5e for inference workloads. Sources: https://www.googlecloudpresscorner.com/2023-11-08-Google-Announces-Expansion-of-AI-Partnership-with-Anthropic",
-        "source_urls": "https://www.googlecloudpresscorner.com/2023-11-08-Google-Announces-Expansion-of-AI-Partnership-with-Anthropic",
+        "content": "Cloud Compute",
+        "name": "Cloud Compute",
+        "title": "Cloud Compute",
+        "description": "Anthropic expanded Google Cloud partnership; uses Cloud TPU v5e for inference workloads.",
+        "references": [
+          "https://www.googlecloudpresscorner.com/2023-11-08-Google-Announces-Expansion-of-AI-Partnership-with-Anthropic"
+        ],
         "source_url": "https://www.googlecloudpresscorner.com/2023-11-08-Google-Announces-Expansion-of-AI-Partnership-with-Anthropic",
-        "source": "https://www.googlecloudpresscorner.com/2023-11-08-Google-Announces-Expansion-of-AI-Partnership-with-Anthropic",
         "instrument": "cloud_partnership",
         "status": "active"
       }
     },
     {
-      "id": "59a76522-00c7-598d-8c35-074dd22a3a43",
-      "familyId": "59a76522-00c7-598d-8c35-074dd22a3a43",
+      "id": "0160de28-662d-5419-8d55-81ca4a23b7f7",
+      "familyId": "0160de28-662d-5419-8d55-81ca4a23b7f7",
       "source_id": "microsoft",
       "target_id": "mistral",
       "type": "investment_and_partnership",
       "weight": 1.0,
       "properties": {
-        "content": "Microsoft €15M investment (converts to equity in next round) plus multi-year Azure partnership; Mistral Large on Azure. Sources: https://azure.microsoft.com/en-us/blog/microsoft-and-mistral-ai-announce-new-partnership-to-accelerate-ai-innovation-and-introduce-mistral-large-first-on-azure/ | https://techcrunch.com/2024/02/27/microsoft-made-a-16-million-investment-in-mistral-ai/",
-        "source_urls": "https://azure.microsoft.com/en-us/blog/microsoft-and-mistral-ai-announce-new-partnership-to-accelerate-ai-innovation-and-introduce-mistral-large-first-on-azure/ | https://techcrunch.com/2024/02/27/microsoft-made-a-16-million-investment-in-mistral-ai/",
+        "content": "Investment And Partnership ($16M)",
+        "name": "Investment And Partnership ($16M)",
+        "title": "Investment And Partnership ($16M)",
+        "description": "Microsoft €15M investment (converts to equity in next round) plus multi-year Azure partnership; Mistral Large on Azure.",
+        "references": [
+          "https://azure.microsoft.com/en-us/blog/microsoft-and-mistral-ai-announce-new-partnership-to-accelerate-ai-innovation-and-introduce-mistral-large-first-on-azure/",
+          "https://techcrunch.com/2024/02/27/microsoft-made-a-16-million-investment-in-mistral-ai/"
+        ],
         "source_url": "https://azure.microsoft.com/en-us/blog/microsoft-and-mistral-ai-announce-new-partnership-to-accelerate-ai-innovation-and-introduce-mistral-large-first-on-azure/",
-        "source": "https://azure.microsoft.com/en-us/blog/microsoft-and-mistral-ai-announce-new-partnership-to-accelerate-ai-innovation-and-introduce-mistral-large-first-on-azure/ | https://techcrunch.com/2024/02/27/microsoft-made-a-16-million-investment-in-mistral-ai/",
         "amount_usd_m": 16,
         "instrument": "equity_commitment",
         "status": "active"
       }
     },
     {
-      "id": "3cd738fc-7a9c-5a8e-a687-12a3a9e78976",
-      "familyId": "3cd738fc-7a9c-5a8e-a687-12a3a9e78976",
+      "id": "4c2d895d-0abb-5d88-b4ea-d4bb912dc105",
+      "familyId": "4c2d895d-0abb-5d88-b4ea-d4bb912dc105",
       "source_id": "mistral",
       "target_id": "microsoft",
       "type": "azure_hosting",
       "weight": 1.0,
       "properties": {
-        "content": "Mistral models hosted in Azure AI model catalog for enterprise customers. Sources: https://azure.microsoft.com/en-us/blog/microsoft-and-mistral-ai-announce-new-partnership-to-accelerate-ai-innovation-and-introduce-mistral-large-first-on-azure/",
-        "source_urls": "https://azure.microsoft.com/en-us/blog/microsoft-and-mistral-ai-announce-new-partnership-to-accelerate-ai-innovation-and-introduce-mistral-large-first-on-azure/",
+        "content": "Azure Hosting",
+        "name": "Azure Hosting",
+        "title": "Azure Hosting",
+        "description": "Mistral models hosted in Azure AI model catalog for enterprise customers.",
+        "references": [
+          "https://azure.microsoft.com/en-us/blog/microsoft-and-mistral-ai-announce-new-partnership-to-accelerate-ai-innovation-and-introduce-mistral-large-first-on-azure/"
+        ],
         "source_url": "https://azure.microsoft.com/en-us/blog/microsoft-and-mistral-ai-announce-new-partnership-to-accelerate-ai-innovation-and-introduce-mistral-large-first-on-azure/",
-        "source": "https://azure.microsoft.com/en-us/blog/microsoft-and-mistral-ai-announce-new-partnership-to-accelerate-ai-innovation-and-introduce-mistral-large-first-on-azure/",
         "instrument": "distribution",
         "status": "active"
       }
     },
     {
-      "id": "d5676479-9393-5117-b745-7fba1043380e",
-      "familyId": "d5676479-9393-5117-b745-7fba1043380e",
+      "id": "20937b59-2da1-569c-ade9-a93780cbb9b1",
+      "familyId": "20937b59-2da1-569c-ade9-a93780cbb9b1",
       "source_id": "microsoft",
       "target_id": "inflection_ai",
       "type": "licensing_and_hiring",
       "weight": 1.0,
       "properties": {
-        "content": "Microsoft agreed to pay ~$650M ($620M non-exclusive IP license + ~$30M waiver) while hiring Inflection leadership/staff. Sources: https://www.reuters.com/technology/microsoft-agreed-pay-inflection-650-mln-while-hiring-its-staff-information-2024-03-21/ | https://assets.publishing.service.gov.uk/media/6719ff5f549f63039436b3c8/__Full_text_decision__.pdf",
-        "source_urls": "https://www.reuters.com/technology/microsoft-agreed-pay-inflection-650-mln-while-hiring-its-staff-information-2024-03-21/ | https://assets.publishing.service.gov.uk/media/6719ff5f549f63039436b3c8/__Full_text_decision__.pdf",
+        "content": "Licensing And Hiring ($650M)",
+        "name": "Licensing And Hiring ($650M)",
+        "title": "Licensing And Hiring ($650M)",
+        "description": "Microsoft agreed to pay ~$650M ($620M non-exclusive IP license + ~$30M waiver) while hiring Inflection leadership/staff.",
+        "references": [
+          "https://www.reuters.com/technology/microsoft-agreed-pay-inflection-650-mln-while-hiring-its-staff-information-2024-03-21/",
+          "https://assets.publishing.service.gov.uk/media/6719ff5f549f63039436b3c8/__Full_text_decision__.pdf"
+        ],
         "source_url": "https://www.reuters.com/technology/microsoft-agreed-pay-inflection-650-mln-while-hiring-its-staff-information-2024-03-21/",
-        "source": "https://www.reuters.com/technology/microsoft-agreed-pay-inflection-650-mln-while-hiring-its-staff-information-2024-03-21/ | https://assets.publishing.service.gov.uk/media/6719ff5f549f63039436b3c8/__Full_text_decision__.pdf",
         "amount_usd_m": 650,
         "instrument": "license_and_settlement",
         "status": "closed"
       }
     },
     {
-      "id": "0d5e38a3-4108-537c-8a02-3a71811424fb",
-      "familyId": "0d5e38a3-4108-537c-8a02-3a71811424fb",
+      "id": "9417295c-1de1-52f4-93a7-652b5fdec125",
+      "familyId": "9417295c-1de1-52f4-93a7-652b5fdec125",
       "source_id": "google",
       "target_id": "character_ai",
       "type": "licensing_agreement",
       "weight": 1.0,
       "properties": {
-        "content": "Non-exclusive LLM license; Alphabet paid $2.7B cash and canceled convertible instruments; hired co-founders. Sources: https://www.reuters.com/technology/artificial-intelligence/google-hires-characterai-cofounders-licenses-its-models-information-reports-2024-08-02/ | https://www.sec.gov/Archives/edgar/data/1652044/000165204424000118/R16.htm",
-        "source_urls": "https://www.reuters.com/technology/artificial-intelligence/google-hires-characterai-cofounders-licenses-its-models-information-reports-2024-08-02/ | https://www.sec.gov/Archives/edgar/data/1652044/000165204424000118/R16.htm",
+        "content": "Licensing Agreement ($2.7B)",
+        "name": "Licensing Agreement ($2.7B)",
+        "title": "Licensing Agreement ($2.7B)",
+        "description": "Non-exclusive LLM license; Alphabet paid $2.7B cash and canceled convertible instruments; hired co-founders.",
+        "references": [
+          "https://www.reuters.com/technology/artificial-intelligence/google-hires-characterai-cofounders-licenses-its-models-information-reports-2024-08-02/",
+          "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000118/R16.htm"
+        ],
         "source_url": "https://www.reuters.com/technology/artificial-intelligence/google-hires-characterai-cofounders-licenses-its-models-information-reports-2024-08-02/",
-        "source": "https://www.reuters.com/technology/artificial-intelligence/google-hires-characterai-cofounders-licenses-its-models-information-reports-2024-08-02/ | https://www.sec.gov/Archives/edgar/data/1652044/000165204424000118/R16.htm",
         "amount_usd_b": 2.7,
         "instrument": "license",
         "status": "closed"
       }
     },
     {
-      "id": "d189914f-3c48-54b8-a459-2e11e99038b8",
-      "familyId": "d189914f-3c48-54b8-a459-2e11e99038b8",
+      "id": "ed5ebe4e-3fab-576c-b546-08ed1ebe7daa",
+      "familyId": "ed5ebe4e-3fab-576c-b546-08ed1ebe7daa",
       "source_id": "microsoft",
       "target_id": "amd",
       "type": "cloud_accelerator_supply",
       "weight": 1.0,
       "properties": {
-        "content": "Azure offers AI-optimized VMs with AMD MI300X accelerators. Sources: https://azure.microsoft.com/en-us/blog/introducing-the-new-ai-accelerator-optimized-vms-with-amd-mi300x/",
-        "source_urls": "https://azure.microsoft.com/en-us/blog/introducing-the-new-ai-accelerator-optimized-vms-with-amd-mi300x/",
+        "content": "Cloud Accelerator Supply",
+        "name": "Cloud Accelerator Supply",
+        "title": "Cloud Accelerator Supply",
+        "description": "Azure offers AI-optimized VMs with AMD MI300X accelerators.",
+        "references": [
+          "https://azure.microsoft.com/en-us/blog/introducing-the-new-ai-accelerator-optimized-vms-with-amd-mi300x/"
+        ],
         "source_url": "https://azure.microsoft.com/en-us/blog/introducing-the-new-ai-accelerator-optimized-vms-with-amd-mi300x/",
-        "source": "https://azure.microsoft.com/en-us/blog/introducing-the-new-ai-accelerator-optimized-vms-with-amd-mi300x/",
         "instrument": "cloud_SKU",
         "status": "active"
       }
     },
     {
-      "id": "d175da91-953b-55c4-ade7-4c646242d489",
-      "familyId": "d175da91-953b-55c4-ade7-4c646242d489",
+      "id": "bc2576a2-c142-5d16-b453-eb93bb15eea4",
+      "familyId": "bc2576a2-c142-5d16-b453-eb93bb15eea4",
       "source_id": "microsoft",
       "target_id": "intel",
       "type": "cloud_accelerator_supply",
       "weight": 1.0,
       "properties": {
-        "content": "Azure hosts Intel Gaudi 3 accelerator instances for AI workloads. Sources: https://www.intel.com/content/www/us/en/newsroom/news/intel-gaudi-3-ai-accelerator.html",
-        "source_urls": "https://www.intel.com/content/www/us/en/newsroom/news/intel-gaudi-3-ai-accelerator.html",
+        "content": "Cloud Accelerator Supply",
+        "name": "Cloud Accelerator Supply",
+        "title": "Cloud Accelerator Supply",
+        "description": "Azure hosts Intel Gaudi 3 accelerator instances for AI workloads.",
+        "references": [
+          "https://www.intel.com/content/www/us/en/newsroom/news/intel-gaudi-3-ai-accelerator.html"
+        ],
         "source_url": "https://www.intel.com/content/www/us/en/newsroom/news/intel-gaudi-3-ai-accelerator.html",
-        "source": "https://www.intel.com/content/www/us/en/newsroom/news/intel-gaudi-3-ai-accelerator.html",
         "instrument": "cloud_SKU",
         "status": "active"
       }
     },
     {
-      "id": "1e66681d-a9a3-52ef-9434-fd8db29b8317",
-      "familyId": "1e66681d-a9a3-52ef-9434-fd8db29b8317",
+      "id": "e9fdaf3d-0755-59cf-9dee-265d1694f525",
+      "familyId": "e9fdaf3d-0755-59cf-9dee-265d1694f525",
       "source_id": "apple",
       "target_id": "google",
       "type": "ai_feature_partnership_talks",
       "weight": 1.0,
       "properties": {
-        "content": "Reuters reported Apple held talks to license Google Gemini for iPhone AI features (Mar 2024). Sources: https://www.reuters.com/technology/apple-holds-talks-with-google-bring-gemini-ai-iphone-2024-03-18/",
-        "source_urls": "https://www.reuters.com/technology/apple-holds-talks-with-google-bring-gemini-ai-iphone-2024-03-18/",
+        "content": "Ai Feature Partnership Talks",
+        "name": "Ai Feature Partnership Talks",
+        "title": "Ai Feature Partnership Talks",
+        "description": "Reuters reported Apple held talks to license Google Gemini for iPhone AI features (Mar 2024).",
+        "references": [
+          "https://www.reuters.com/technology/apple-holds-talks-with-google-bring-gemini-ai-iphone-2024-03-18/"
+        ],
         "source_url": "https://www.reuters.com/technology/apple-holds-talks-with-google-bring-gemini-ai-iphone-2024-03-18/",
-        "source": "https://www.reuters.com/technology/apple-holds-talks-with-google-bring-gemini-ai-iphone-2024-03-18/",
         "instrument": "licensing_negotiation",
         "status": "reported"
       }
     },
     {
-      "id": "ad72cb2a-45a1-5e64-8338-fbb21f3e4bc1",
-      "familyId": "ad72cb2a-45a1-5e64-8338-fbb21f3e4bc1",
+      "id": "8262270c-8d70-5180-a043-dc7cda5934b1",
+      "familyId": "8262270c-8d70-5180-a043-dc7cda5934b1",
       "source_id": "softbank",
       "target_id": "arm",
       "type": "majority_shareholder",
       "weight": 1.0,
       "properties": {
-        "content": "SoftBank remains controlling shareholder of Arm after 2023 IPO. Sources: https://group.softbank/en/ir/financials/annual_reports",
-        "source_urls": "https://group.softbank/en/ir/financials/annual_reports",
+        "content": "Majority Shareholder",
+        "name": "Majority Shareholder",
+        "title": "Majority Shareholder",
+        "description": "SoftBank remains controlling shareholder of Arm after 2023 IPO.",
+        "references": [
+          "https://group.softbank/en/ir/financials/annual_reports"
+        ],
         "source_url": "https://group.softbank/en/ir/financials/annual_reports",
-        "source": "https://group.softbank/en/ir/financials/annual_reports",
         "instrument": "equity_control",
         "status": "active"
       }
     },
     {
-      "id": "d1a453c5-b6de-5990-895c-c8831037aec8",
-      "familyId": "d1a453c5-b6de-5990-895c-c8831037aec8",
+      "id": "545189f8-e98f-52e5-b85c-2510b720de41",
+      "familyId": "545189f8-e98f-52e5-b85c-2510b720de41",
       "source_id": "nvidia",
       "target_id": "arm",
       "type": "terminated_acquisition",
       "weight": 1.0,
       "properties": {
-        "content": "NVIDIA-Arm acquisition terminated Feb 2022 after regulatory opposition. Sources: https://nvidianews.nvidia.com/news/nvidia-and-softbank-group-announce-termination-of-nvidias-acquisition-of-arm-limited",
-        "source_urls": "https://nvidianews.nvidia.com/news/nvidia-and-softbank-group-announce-termination-of-nvidias-acquisition-of-arm-limited",
+        "content": "Terminated Acquisition",
+        "name": "Terminated Acquisition",
+        "title": "Terminated Acquisition",
+        "description": "NVIDIA-Arm acquisition terminated Feb 2022 after regulatory opposition.",
+        "references": [
+          "https://nvidianews.nvidia.com/news/nvidia-and-softbank-group-announce-termination-of-nvidias-acquisition-of-arm-limited"
+        ],
         "source_url": "https://nvidianews.nvidia.com/news/nvidia-and-softbank-group-announce-termination-of-nvidias-acquisition-of-arm-limited",
-        "source": "https://nvidianews.nvidia.com/news/nvidia-and-softbank-group-announce-termination-of-nvidias-acquisition-of-arm-limited",
         "instrument": "M&A",
         "status": "terminated"
       }
     },
     {
-      "id": "38ece6a3-de0d-52e3-aa07-942a0767762f",
-      "familyId": "38ece6a3-de0d-52e3-aa07-942a0767762f",
+      "id": "81d6d03f-536a-5adb-9254-29e931d0de79",
+      "familyId": "81d6d03f-536a-5adb-9254-29e931d0de79",
       "source_id": "softbank",
       "target_id": "stargate_project",
       "type": "lead_financial_partner",
       "weight": 1.0,
       "properties": {
-        "content": "SoftBank lead financial partner for Stargate; Masayoshi Son chairman. Sources: https://group.softbank/en/news/press/20250122 | https://openai.com/index/announcing-the-stargate-project/",
-        "source_urls": "https://group.softbank/en/news/press/20250122 | https://openai.com/index/announcing-the-stargate-project/",
+        "content": "Lead Financial Partner",
+        "name": "Lead Financial Partner",
+        "title": "Lead Financial Partner",
+        "description": "SoftBank lead financial partner for Stargate; Masayoshi Son chairman.",
+        "references": [
+          "https://group.softbank/en/news/press/20250122",
+          "https://openai.com/index/announcing-the-stargate-project/"
+        ],
         "source_url": "https://group.softbank/en/news/press/20250122",
-        "source": "https://group.softbank/en/news/press/20250122 | https://openai.com/index/announcing-the-stargate-project/",
         "instrument": "project_equity",
         "status": "announced"
       }
     },
     {
-      "id": "ab79acf9-5970-531d-bc63-de992fd382d2",
-      "familyId": "ab79acf9-5970-531d-bc63-de992fd382d2",
+      "id": "8246dff0-cb41-5e5c-abfe-1cbce0c7240b",
+      "familyId": "8246dff0-cb41-5e5c-abfe-1cbce0c7240b",
       "source_id": "openai",
       "target_id": "stargate_project",
       "type": "operational_partner",
       "weight": 1.0,
       "properties": {
-        "content": "OpenAI operational responsibility for Stargate infrastructure buildout. Sources: https://openai.com/index/announcing-the-stargate-project/",
-        "source_urls": "https://openai.com/index/announcing-the-stargate-project/",
+        "content": "Operational Partner",
+        "name": "Operational Partner",
+        "title": "Operational Partner",
+        "description": "OpenAI operational responsibility for Stargate infrastructure buildout.",
+        "references": [
+          "https://openai.com/index/announcing-the-stargate-project/"
+        ],
         "source_url": "https://openai.com/index/announcing-the-stargate-project/",
-        "source": "https://openai.com/index/announcing-the-stargate-project/",
         "instrument": "project_operations",
         "status": "announced"
       }
     },
     {
-      "id": "8115e20f-35ad-5563-81c9-5d1ceaecbfd2",
-      "familyId": "8115e20f-35ad-5563-81c9-5d1ceaecbfd2",
+      "id": "0583bb80-0bd1-558b-857e-0b33d30d7655",
+      "familyId": "0583bb80-0bd1-558b-857e-0b33d30d7655",
       "source_id": "oracle",
       "target_id": "stargate_project",
       "type": "equity_and_technology",
       "weight": 1.0,
       "properties": {
-        "content": "Oracle initial equity funder and technology partner for Stargate data centers. Sources: https://openai.com/index/announcing-the-stargate-project/",
-        "source_urls": "https://openai.com/index/announcing-the-stargate-project/",
+        "content": "Equity And Technology",
+        "name": "Equity And Technology",
+        "title": "Equity And Technology",
+        "description": "Oracle initial equity funder and technology partner for Stargate data centers.",
+        "references": [
+          "https://openai.com/index/announcing-the-stargate-project/"
+        ],
         "source_url": "https://openai.com/index/announcing-the-stargate-project/",
-        "source": "https://openai.com/index/announcing-the-stargate-project/",
         "instrument": "project_equity",
         "status": "announced"
       }
     },
     {
-      "id": "ad1bcc04-91a6-56d6-8ffc-7d1d7699f181",
-      "familyId": "ad1bcc04-91a6-56d6-8ffc-7d1d7699f181",
+      "id": "66077900-76e3-51f9-a1ed-0959946110d3",
+      "familyId": "66077900-76e3-51f9-a1ed-0959946110d3",
       "source_id": "mgx",
       "target_id": "stargate_project",
       "type": "equity_funding",
       "weight": 1.0,
       "properties": {
-        "content": "MGX listed among initial Stargate equity funders. Sources: https://openai.com/index/announcing-the-stargate-project/",
-        "source_urls": "https://openai.com/index/announcing-the-stargate-project/",
+        "content": "Equity Funding",
+        "name": "Equity Funding",
+        "title": "Equity Funding",
+        "description": "MGX listed among initial Stargate equity funders.",
+        "references": [
+          "https://openai.com/index/announcing-the-stargate-project/"
+        ],
         "source_url": "https://openai.com/index/announcing-the-stargate-project/",
-        "source": "https://openai.com/index/announcing-the-stargate-project/",
         "instrument": "project_equity",
         "status": "announced"
       }
     },
     {
-      "id": "1247c53f-fdbc-5662-88a1-d865a20d68fa",
-      "familyId": "1247c53f-fdbc-5662-88a1-d865a20d68fa",
+      "id": "ac351adb-cca6-51f3-988e-62c38fbc09d1",
+      "familyId": "ac351adb-cca6-51f3-988e-62c38fbc09d1",
       "source_id": "nvidia",
       "target_id": "stargate_project",
       "type": "technology_partner",
       "weight": 1.0,
       "properties": {
-        "content": "NVIDIA named key initial technology partner for Stargate compute buildout. Sources: https://openai.com/index/announcing-the-stargate-project/",
-        "source_urls": "https://openai.com/index/announcing-the-stargate-project/",
+        "content": "Technology Partner",
+        "name": "Technology Partner",
+        "title": "Technology Partner",
+        "description": "NVIDIA named key initial technology partner for Stargate compute buildout.",
+        "references": [
+          "https://openai.com/index/announcing-the-stargate-project/"
+        ],
         "source_url": "https://openai.com/index/announcing-the-stargate-project/",
-        "source": "https://openai.com/index/announcing-the-stargate-project/",
         "instrument": "technology_alliance",
         "status": "announced"
       }
     },
     {
-      "id": "6c6cb783-192c-54c3-b970-832995b1662b",
-      "familyId": "6c6cb783-192c-54c3-b970-832995b1662b",
+      "id": "b09e750d-579f-5ed3-a9f4-862bd1837f3d",
+      "familyId": "b09e750d-579f-5ed3-a9f4-862bd1837f3d",
       "source_id": "microsoft",
       "target_id": "stargate_project",
       "type": "technology_partner",
       "weight": 1.0,
       "properties": {
-        "content": "Microsoft named key initial technology partner for Stargate. Sources: https://openai.com/index/announcing-the-stargate-project/",
-        "source_urls": "https://openai.com/index/announcing-the-stargate-project/",
+        "content": "Technology Partner",
+        "name": "Technology Partner",
+        "title": "Technology Partner",
+        "description": "Microsoft named key initial technology partner for Stargate.",
+        "references": [
+          "https://openai.com/index/announcing-the-stargate-project/"
+        ],
         "source_url": "https://openai.com/index/announcing-the-stargate-project/",
-        "source": "https://openai.com/index/announcing-the-stargate-project/",
         "instrument": "technology_alliance",
         "status": "announced"
       }
     },
     {
-      "id": "ba7b95bf-b3d7-5c61-a08e-78b877574273",
-      "familyId": "ba7b95bf-b3d7-5c61-a08e-78b877574273",
+      "id": "3aa87aa4-76f5-5f5f-85e1-0fc10736e6b3",
+      "familyId": "3aa87aa4-76f5-5f5f-85e1-0fc10736e6b3",
       "source_id": "arm",
       "target_id": "stargate_project",
       "type": "technology_partner",
       "weight": 1.0,
       "properties": {
-        "content": "Arm named key initial technology partner for Stargate. Sources: https://openai.com/index/announcing-the-stargate-project/",
-        "source_urls": "https://openai.com/index/announcing-the-stargate-project/",
+        "content": "Technology Partner",
+        "name": "Technology Partner",
+        "title": "Technology Partner",
+        "description": "Arm named key initial technology partner for Stargate.",
+        "references": [
+          "https://openai.com/index/announcing-the-stargate-project/"
+        ],
         "source_url": "https://openai.com/index/announcing-the-stargate-project/",
-        "source": "https://openai.com/index/announcing-the-stargate-project/",
         "instrument": "technology_alliance",
         "status": "announced"
       }
     },
     {
-      "id": "52c36977-2f41-5a99-a7e3-422204d6cae7",
-      "familyId": "52c36977-2f41-5a99-a7e3-422204d6cae7",
+      "id": "744ced87-06a7-5dbc-a5b9-89fa292140d4",
+      "familyId": "744ced87-06a7-5dbc-a5b9-89fa292140d4",
       "source_id": "nvidia",
       "target_id": "openai",
       "type": "technology_collaboration",
       "weight": 1.0,
       "properties": {
-        "content": "OpenAI cites NVIDIA collaboration dating to 2016; Stargate joint operations for compute systems. Sources: https://openai.com/index/announcing-the-stargate-project/",
-        "source_urls": "https://openai.com/index/announcing-the-stargate-project/",
+        "content": "Technology Collaboration",
+        "name": "Technology Collaboration",
+        "title": "Technology Collaboration",
+        "description": "OpenAI cites NVIDIA collaboration dating to 2016; Stargate joint operations for compute systems.",
+        "references": [
+          "https://openai.com/index/announcing-the-stargate-project/"
+        ],
         "source_url": "https://openai.com/index/announcing-the-stargate-project/",
-        "source": "https://openai.com/index/announcing-the-stargate-project/",
         "instrument": "supply_and_R&D",
         "status": "active"
       }
     },
     {
-      "id": "e571ab54-fb28-54f2-b30b-dfc739f11efe",
-      "familyId": "e571ab54-fb28-54f2-b30b-dfc739f11efe",
+      "id": "ac65b9e7-f54f-543e-9e66-92a924dfe148",
+      "familyId": "ac65b9e7-f54f-543e-9e66-92a924dfe148",
       "source_id": "openai",
       "target_id": "coreweave",
       "type": "gpu_capacity",
       "weight": 1.0,
       "properties": {
-        "content": "OpenAI used CoreWeave for additional GPU capacity amid supply constraints (Reuters reporting). Sources: https://www.reuters.com/technology/artificial-intelligence/openai-uses-nvidia-rival-chips-amid-chip-shortage-2024-03-20/",
-        "source_urls": "https://www.reuters.com/technology/artificial-intelligence/openai-uses-nvidia-rival-chips-amid-chip-shortage-2024-03-20/",
+        "content": "Gpu Capacity",
+        "name": "Gpu Capacity",
+        "title": "Gpu Capacity",
+        "description": "OpenAI used CoreWeave for additional GPU capacity amid supply constraints (Reuters reporting).",
+        "references": [
+          "https://www.reuters.com/technology/artificial-intelligence/openai-uses-nvidia-rival-chips-amid-chip-shortage-2024-03-20/"
+        ],
         "source_url": "https://www.reuters.com/technology/artificial-intelligence/openai-uses-nvidia-rival-chips-amid-chip-shortage-2024-03-20/",
-        "source": "https://www.reuters.com/technology/artificial-intelligence/openai-uses-nvidia-rival-chips-amid-chip-shortage-2024-03-20/",
         "instrument": "cloud_capacity",
         "status": "reported"
       }
     },
     {
-      "id": "823420b5-41c8-5070-a8d0-d4977ca68d8d",
-      "familyId": "823420b5-41c8-5070-a8d0-d4977ca68d8d",
+      "id": "0823989b-fcfe-536d-9f07-f8d570033626",
+      "familyId": "0823989b-fcfe-536d-9f07-f8d570033626",
       "source_id": "coreweave",
       "target_id": "nvidia",
       "type": "debt_financing_for_gpus",
       "weight": 1.0,
       "properties": {
-        "content": "CoreWeave secured $2.3B debt financing backed by NVIDIA H100 contracts (NVIDIA press release). Sources: https://www.nvidia.com/en-us/geforce/news/coreweave-secures-2-3b-debt-financing-for-ai-infrastructure/",
-        "source_urls": "https://www.nvidia.com/en-us/geforce/news/coreweave-secures-2-3b-debt-financing-for-ai-infrastructure/",
+        "content": "Debt Financing For Gpus ($2.3B)",
+        "name": "Debt Financing For Gpus ($2.3B)",
+        "title": "Debt Financing For Gpus ($2.3B)",
+        "description": "CoreWeave secured $2.3B debt financing backed by NVIDIA H100 contracts (NVIDIA press release).",
+        "references": [
+          "https://www.nvidia.com/en-us/geforce/news/coreweave-secures-2-3b-debt-financing-for-ai-infrastructure/"
+        ],
         "source_url": "https://www.nvidia.com/en-us/geforce/news/coreweave-secures-2-3b-debt-financing-for-ai-infrastructure/",
-        "source": "https://www.nvidia.com/en-us/geforce/news/coreweave-secures-2-3b-debt-financing-for-ai-infrastructure/",
         "amount_usd_b": 2.3,
         "instrument": "secured_debt",
         "status": "announced"
       }
     },
     {
-      "id": "4f4fc6f8-dfb3-5d80-86e4-3af583fe13ce",
-      "familyId": "4f4fc6f8-dfb3-5d80-86e4-3af583fe13ce",
+      "id": "48394aab-042e-57ea-bbdc-ee4827661ca5",
+      "familyId": "48394aab-042e-57ea-bbdc-ee4827661ca5",
       "source_id": "nvidia_nventures",
       "target_id": "coreweave",
       "type": "venture_investment",
       "weight": 1.0,
       "properties": {
-        "content": "NVentures portfolio company; NVIDIA ecosystem neocloud partner. Sources: https://www.nvidia.com/en-us/about-nvidia/ventures/",
-        "source_urls": "https://www.nvidia.com/en-us/about-nvidia/ventures/",
+        "content": "Venture Investment",
+        "name": "Venture Investment",
+        "title": "Venture Investment",
+        "description": "NVentures portfolio company; NVIDIA ecosystem neocloud partner.",
+        "references": [
+          "https://www.nvidia.com/en-us/about-nvidia/ventures/"
+        ],
         "source_url": "https://www.nvidia.com/en-us/about-nvidia/ventures/",
-        "source": "https://www.nvidia.com/en-us/about-nvidia/ventures/",
         "instrument": "equity",
         "status": "active"
       }
     },
     {
-      "id": "5388d695-39a4-5cb1-935e-8410c8d2dbf9",
-      "familyId": "5388d695-39a4-5cb1-935e-8410c8d2dbf9",
+      "id": "ffe11c0b-6933-5beb-b469-19f10921ef1e",
+      "familyId": "ffe11c0b-6933-5beb-b469-19f10921ef1e",
       "source_id": "founders_fund",
       "target_id": "xai",
       "type": "venture_investment",
       "weight": 1.0,
       "properties": {
-        "content": "xAI raised $6B series B at ~$24B valuation; Founders Fund among investors cited by Reuters. Sources: https://www.reuters.com/technology/artificial-intelligence/musks-xai-raises-6-billion-funding-valuation-24-billion-2024-05-26/",
-        "source_urls": "https://www.reuters.com/technology/artificial-intelligence/musks-xai-raises-6-billion-funding-valuation-24-billion-2024-05-26/",
+        "content": "Venture Investment ($6B)",
+        "name": "Venture Investment ($6B)",
+        "title": "Venture Investment ($6B)",
+        "description": "xAI raised $6B series B at ~$24B valuation; Founders Fund among investors cited by Reuters.",
+        "references": [
+          "https://www.reuters.com/technology/artificial-intelligence/musks-xai-raises-6-billion-funding-valuation-24-billion-2024-05-26/"
+        ],
         "source_url": "https://www.reuters.com/technology/artificial-intelligence/musks-xai-raises-6-billion-funding-valuation-24-billion-2024-05-26/",
-        "source": "https://www.reuters.com/technology/artificial-intelligence/musks-xai-raises-6-billion-funding-valuation-24-billion-2024-05-26/",
         "amount_usd_b": 6,
         "instrument": "equity",
         "status": "reported"
       }
     },
     {
-      "id": "86d184a6-04d1-5da8-b6a7-27f6a02cb399",
-      "familyId": "86d184a6-04d1-5da8-b6a7-27f6a02cb399",
+      "id": "fb8badfe-eb29-56d0-b479-e6936527029a",
+      "familyId": "fb8badfe-eb29-56d0-b479-e6936527029a",
       "source_id": "xai",
       "target_id": "nvidia",
       "type": "accelerator_supply",
       "weight": 1.0,
       "properties": {
-        "content": "xAI Colossus and expansion clusters rely on large NVIDIA GPU deployments (company and industry reporting). Sources: https://www.reuters.com/technology/artificial-intelligence/musks-xai-raises-6-billion-funding-valuation-24-billion-2024-05-26/",
-        "source_urls": "https://www.reuters.com/technology/artificial-intelligence/musks-xai-raises-6-billion-funding-valuation-24-billion-2024-05-26/",
+        "content": "Accelerator Supply",
+        "name": "Accelerator Supply",
+        "title": "Accelerator Supply",
+        "description": "xAI Colossus and expansion clusters rely on large NVIDIA GPU deployments (company and industry reporting).",
+        "references": [
+          "https://www.reuters.com/technology/artificial-intelligence/musks-xai-raises-6-billion-funding-valuation-24-billion-2024-05-26/"
+        ],
         "source_url": "https://www.reuters.com/technology/artificial-intelligence/musks-xai-raises-6-billion-funding-valuation-24-billion-2024-05-26/",
-        "source": "https://www.reuters.com/technology/artificial-intelligence/musks-xai-raises-6-billion-funding-valuation-24-billion-2024-05-26/",
         "instrument": "hardware_supply",
         "status": "active"
       }
     },
     {
-      "id": "5319484f-0f02-56a6-833d-36277744d35e",
-      "familyId": "5319484f-0f02-56a6-833d-36277744d35e",
+      "id": "c2cb1a6f-31ee-5e23-b8e6-c4f44a06e256",
+      "familyId": "c2cb1a6f-31ee-5e23-b8e6-c4f44a06e256",
       "source_id": "meta",
       "target_id": "nvidia",
       "type": "infrastructure_capex",
       "weight": 1.0,
       "properties": {
-        "content": "Meta guided tens of billions in 2024 capex driven largely by AI infrastructure including NVIDIA GPUs. Sources: https://investor.atmeta.com/investor-news/press-release-details/2024/Meta-Reports-Fourth-Quarter-and-Full-Year-2023-Results/default.aspx",
-        "source_urls": "https://investor.atmeta.com/investor-news/press-release-details/2024/Meta-Reports-Fourth-Quarter-and-Full-Year-2023-Results/default.aspx",
+        "content": "Infrastructure Capex",
+        "name": "Infrastructure Capex",
+        "title": "Infrastructure Capex",
+        "description": "Meta guided tens of billions in 2024 capex driven largely by AI infrastructure including NVIDIA GPUs.",
+        "references": [
+          "https://investor.atmeta.com/investor-news/press-release-details/2024/Meta-Reports-Fourth-Quarter-and-Full-Year-2023-Results/default.aspx"
+        ],
         "source_url": "https://investor.atmeta.com/investor-news/press-release-details/2024/Meta-Reports-Fourth-Quarter-and-Full-Year-2023-Results/default.aspx",
-        "source": "https://investor.atmeta.com/investor-news/press-release-details/2024/Meta-Reports-Fourth-Quarter-and-Full-Year-2023-Results/default.aspx",
         "instrument": "capex",
         "status": "disclosed"
       }
     },
     {
-      "id": "4b0c0c02-010f-5949-9387-7d2246e93694",
-      "familyId": "4b0c0c02-010f-5949-9387-7d2246e93694",
+      "id": "ccdf4609-5bc2-5aa7-9650-d639f89a008a",
+      "familyId": "ccdf4609-5bc2-5aa7-9650-d639f89a008a",
       "source_id": "oracle",
       "target_id": "cohere",
       "type": "strategic_investment",
       "weight": 1.0,
       "properties": {
-        "content": "Oracle invested in Cohere and partners on OCI deployment (Oracle announcement Jun 2023). Sources: https://www.oracle.com/news/announcement/oracle-invests-in-cohere-2023-06-08/",
-        "source_urls": "https://www.oracle.com/news/announcement/oracle-invests-in-cohere-2023-06-08/",
+        "content": "Strategic Investment",
+        "name": "Strategic Investment",
+        "title": "Strategic Investment",
+        "description": "Oracle invested in Cohere and partners on OCI deployment (Oracle announcement Jun 2023).",
+        "references": [
+          "https://www.oracle.com/news/announcement/oracle-invests-in-cohere-2023-06-08/"
+        ],
         "source_url": "https://www.oracle.com/news/announcement/oracle-invests-in-cohere-2023-06-08/",
-        "source": "https://www.oracle.com/news/announcement/oracle-invests-in-cohere-2023-06-08/",
         "instrument": "equity",
         "status": "announced"
       }
     },
     {
-      "id": "28cc6000-4ab3-543e-8cd0-3e3cf47cd8c6",
-      "familyId": "28cc6000-4ab3-543e-8cd0-3e3cf47cd8c6",
+      "id": "ac729b41-25d4-5153-ad23-eb79165d4d6b",
+      "familyId": "ac729b41-25d4-5153-ad23-eb79165d4d6b",
       "source_id": "nvidia",
       "target_id": "databricks",
       "type": "strategic_partnership",
       "weight": 1.0,
       "properties": {
-        "content": "NVIDIA and Databricks announced strategic partnership and mutual investment (2023). Sources: https://www.nvidia.com/en-us/about-nvidia/press-releases/2023/nvidia-databricks-strategic-partnership/",
-        "source_urls": "https://www.nvidia.com/en-us/about-nvidia/press-releases/2023/nvidia-databricks-strategic-partnership/",
+        "content": "Strategic Partnership",
+        "name": "Strategic Partnership",
+        "title": "Strategic Partnership",
+        "description": "NVIDIA and Databricks announced strategic partnership and mutual investment (2023).",
+        "references": [
+          "https://www.nvidia.com/en-us/about-nvidia/press-releases/2023/nvidia-databricks-strategic-partnership/"
+        ],
         "source_url": "https://www.nvidia.com/en-us/about-nvidia/press-releases/2023/nvidia-databricks-strategic-partnership/",
-        "source": "https://www.nvidia.com/en-us/about-nvidia/press-releases/2023/nvidia-databricks-strategic-partnership/",
         "instrument": "alliance",
         "status": "active"
       }
     },
     {
-      "id": "f2b141a8-acf3-5122-9677-dd2d67c8ed41",
-      "familyId": "f2b141a8-acf3-5122-9677-dd2d67c8ed41",
+      "id": "b8fbcbf1-98cf-506f-ae77-2029375b2b5d",
+      "familyId": "b8fbcbf1-98cf-506f-ae77-2029375b2b5d",
       "source_id": "sequoia_capital",
       "target_id": "anthropic",
       "type": "venture_investment",
       "weight": 1.0,
       "properties": {
-        "content": "Sequoia participated in Anthropic Series C (company announcement). Sources: https://www.anthropic.com/news/anthropic-series-c",
-        "source_urls": "https://www.anthropic.com/news/anthropic-series-c",
+        "content": "Venture Investment",
+        "name": "Venture Investment",
+        "title": "Venture Investment",
+        "description": "Sequoia participated in Anthropic Series C (company announcement).",
+        "references": [
+          "https://www.anthropic.com/news/anthropic-series-c"
+        ],
         "source_url": "https://www.anthropic.com/news/anthropic-series-c",
-        "source": "https://www.anthropic.com/news/anthropic-series-c",
         "instrument": "equity",
         "status": "historical"
       }
     },
     {
-      "id": "5e73887e-14ee-5f67-bfdd-a13178e5fcce",
-      "familyId": "5e73887e-14ee-5f67-bfdd-a13178e5fcce",
+      "id": "45cabb68-2d9d-5ad6-ac64-9953cf110465",
+      "familyId": "45cabb68-2d9d-5ad6-ac64-9953cf110465",
       "source_id": "demo_disclaimer",
       "target_id": "openai",
       "type": "documents",
       "weight": 1.0,
       "properties": {
-        "content": "Demo edge — verify live terms via cited primary sources before business use. Sources: https://openai.com/index/announcing-the-stargate-project/",
-        "source_urls": "https://openai.com/index/announcing-the-stargate-project/",
+        "content": "Documents",
+        "name": "Documents",
+        "title": "Documents",
+        "description": "Demo edge — verify live terms via cited primary sources before business use.",
+        "references": [
+          "https://openai.com/index/announcing-the-stargate-project/"
+        ],
         "source_url": "https://openai.com/index/announcing-the-stargate-project/",
-        "source": "https://openai.com/index/announcing-the-stargate-project/",
         "instrument": "metadata",
         "status": "demo"
       }

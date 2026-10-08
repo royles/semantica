@@ -1,6 +1,7 @@
 {
+  "title": "AI industry capital & supply",
+  "description": "Documented investments, cloud commitments, debt, and partnerships across major AI labs, hyperscalers, chip vendors, and investors. Each entity has a short title, a description, and a references list (URLs).",
   "default_graph": "ai_capital_graph.json",
-  "description": "Grounded AI industry capital/supply demo for Cloudera AI Knowledge Explorer. Node/edge inspector shows source and source_url; full text includes inline citations.",
   "regenerate": "python deploy/cloudera/inference-app/fixtures/seed_ai_capital_graph.py",
   "references": [
     {
