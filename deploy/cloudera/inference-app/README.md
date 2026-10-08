@@ -25,6 +25,14 @@ Read-only UIs may use `CDSW_READONLY_PORT`; Explorer needs read/write graph APIs
 ## Deploy
 
 - **Entrypoint:** `deploy/cloudera/inference-app/launch_app.py`
+- **Run with the engine’s system Python** (e.g. `python` / `python3` on `PATH`). Do **not** create a project venv for the application process unless your site standard requires it.
+- **Application command** (preferred — not a notebook cell):
+
+  ```bash
+  python deploy/cloudera/inference-app/launch_app.py
+  ```
+
+  If CAI runs code inside a **notebook kernel**, `__file__` is undefined unless you use `%run` on the script path above. Optional: set `SEMANTICA_INFERENCE_APP_DIR` to the absolute path of `deploy/cloudera/inference-app`.
 - **Requirements:** repository root [`requirements.txt`](../../../requirements.txt) (`semantica[explorer]` from PyPI), or [`inference-app/requirements.txt`](requirements.txt) (same pin)
 
 **Git clone without Docker:** CAI Python engines usually **do not include npm**. The React bundle is not in git (`semantica/static/` is build output). Use one of:

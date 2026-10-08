@@ -25,9 +25,44 @@ if hasattr(sys.stdout, "reconfigure"):
         pass
 os.environ.setdefault("PYTHONUNBUFFERED", "1")
 
+# Relative to repo root (used when __file__ is unavailable — e.g. CAI notebook kernel).
+_INFERENCE_APP_REL = Path("deploy") / "cloudera" / "inference-app"
+
+
+def _inference_app_dir() -> Path:
+    """Directory containing launch_app.py, fixtures/, and requirements.txt."""
+    override = (os.environ.get("SEMANTICA_INFERENCE_APP_DIR") or "").strip()
+    if override:
+        return Path(override).expanduser().resolve()
+
+    try:
+        here = Path(__file__).resolve().parent
+        if (here / "fixtures").is_dir() or here.name == "inference-app":
+            return here
+    except NameError:
+        pass
+
+    cwd = Path.cwd()
+    for candidate in (
+        cwd / _INFERENCE_APP_REL,
+        cwd / "inference-app",
+        cwd,
+    ):
+        if (candidate / "fixtures").is_dir():
+            return candidate.resolve()
+        if candidate.name == "inference-app" and (candidate / "launch_app.py").is_file():
+            return candidate.resolve()
+
+    for parent in (cwd, *cwd.parents):
+        nested = parent / _INFERENCE_APP_REL
+        if (nested / "fixtures").is_dir():
+            return nested.resolve()
+
+    return cwd.resolve()
+
 
 def _default_graph_path() -> Path:
-    return Path(__file__).resolve().parent / "fixtures" / "sample_graph.json"
+    return _inference_app_dir() / "fixtures" / "sample_graph.json"
 
 
 def _seed_sample_graph(path: Path) -> None:
@@ -200,7 +235,6 @@ def _editable_install_root() -> Path | None:
 
 
 def _explain_missing_ui_when_pip_satisfied() -> str:
-    pkg_root = Path(__file__).resolve().parent
     static = _static_index_path()
     editable = _editable_install_root()
     lines = [
@@ -250,7 +284,7 @@ def _find_semantica_repo_root() -> Path | None:
             return candidate
 
     for start in (
-        Path(__file__).resolve().parent,
+        _inference_app_dir(),
         Path.cwd(),
     ):
         for parent in (start, *start.parents):
