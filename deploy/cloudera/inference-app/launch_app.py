@@ -62,34 +62,96 @@ def _inference_app_dir() -> Path:
     return cwd.resolve()
 
 
+def _fixtures_dir() -> Path:
+    return _inference_app_dir() / "fixtures"
+
+
 def _default_graph_path() -> Path:
-    return _inference_app_dir() / "fixtures" / "sample_graph.json"
+    return _fixtures_dir() / "ai_capital_graph.json"
 
 
-def _seed_sample_graph(path: Path) -> None:
+def _demo_resources_manifest_path() -> Path:
+    return _fixtures_dir() / "demo_resources.json"
+
+
+def _load_demo_resources_manifest() -> dict | None:
+    path = _demo_resources_manifest_path()
+    if not path.is_file():
+        return None
+    import json
+
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        _log_step(f"WARNING: Could not read demo resources manifest: {exc}")
+        return None
+
+
+def _register_demo_resource_routes(app: object) -> None:
+    """Expose default fixture bibliography for Explorer clients."""
+    from fastapi.responses import FileResponse, JSONResponse
+
+    fixtures = _fixtures_dir()
+    manifest_path = _demo_resources_manifest_path()
+    graph_path = _default_graph_path()
+
+    @app.get("/api/demo/resources", include_in_schema=True)
+    async def demo_resources():
+        payload = _load_demo_resources_manifest()
+        if payload is None:
+            return JSONResponse(
+                status_code=404,
+                content={
+                    "detail": "Demo resources manifest missing. Run fixtures/seed_ai_capital_graph.py.",
+                },
+            )
+        payload = dict(payload)
+        payload["graph_path"] = str(graph_path)
+        payload["manifest_path"] = str(manifest_path)
+        return payload
+
+    @app.get("/api/demo/graph", include_in_schema=False)
+    async def demo_graph_download():
+        if not graph_path.is_file():
+            return JSONResponse(status_code=404, content={"detail": "Demo graph JSON not found."})
+        return FileResponse(
+            graph_path,
+            media_type="application/json",
+            filename=graph_path.name,
+        )
+
+
+def _seed_demo_graph(path: Path) -> None:
     if path.is_file():
         return
+    fixtures_dir = _fixtures_dir()
+    bundled = fixtures_dir / "ai_capital_graph.json"
+    if bundled.is_file() and bundled != path.resolve():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(bundled.read_bytes())
+        return
+
+    # Generate in-process when the JSON was not shipped (e.g. partial checkout).
+    import importlib.util
+
+    seed_script = fixtures_dir / "seed_ai_capital_graph.py"
+    if seed_script.is_file():
+        spec = importlib.util.spec_from_file_location(
+            "seed_ai_capital_graph", seed_script
+        )
+        if spec and spec.loader:
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            module.write_ai_capital_graph(path)
+            return
+
     path.parent.mkdir(parents=True, exist_ok=True)
     from semantica.context import ContextGraph
 
     graph = ContextGraph()
-    graph.add_node(
-        "python",
-        "language",
-        content="Python programming language",
-    )
-    graph.add_node(
-        "semantica",
-        "framework",
-        content="Semantica knowledge graph platform",
-    )
-    graph.add_node(
-        "cloudera_ai",
-        "platform",
-        content="Cloudera AI Inference application hosting",
-    )
-    graph.add_edge("python", "semantica", "powers")
-    graph.add_edge("semantica", "cloudera_ai", "deployed_on")
+    graph.add_node("nvidia", "company", content="NVIDIA (demo fallback — regenerate fixtures).")
+    graph.add_node("openai", "company", content="OpenAI (demo fallback — regenerate fixtures).")
+    graph.add_edge("nvidia", "openai", "strategic_investment", content="Demo edge.")
     graph.save_to_file(str(path))
 
 
@@ -208,10 +270,26 @@ def _configure_cai_environment() -> tuple[str, int, Path]:
         if origins:
             os.environ["ALLOWED_ORIGINS"] = ",".join(origins)
 
+    default_graph = _default_graph_path()
+    os.environ.setdefault("SEMANTICA_DEMO_GRAPH_PATH", str(default_graph))
     graph_path = Path(
-        os.environ.get("SEMANTICA_GRAPH_PATH", str(_default_graph_path()))
+        os.environ.get("SEMANTICA_GRAPH_PATH", str(default_graph))
     ).expanduser()
-    _seed_sample_graph(graph_path)
+    _seed_demo_graph(graph_path)
+    if graph_path.resolve() == default_graph.resolve():
+        manifest = _demo_resources_manifest_path()
+        if not manifest.is_file():
+            seed_script = _fixtures_dir() / "seed_ai_capital_graph.py"
+            if seed_script.is_file():
+                import importlib.util
+
+                spec = importlib.util.spec_from_file_location(
+                    "seed_ai_capital_graph", seed_script
+                )
+                if spec and spec.loader:
+                    module = importlib.util.module_from_spec(spec)
+                    spec.loader.exec_module(module)
+                    module.write_sources_manifest(_fixtures_dir(), default_graph)
 
     if not graph_path.is_file():
         print(f"Graph file not found: {graph_path}", file=sys.stderr)
@@ -538,6 +616,14 @@ def main() -> None:
 
     _log_step("Creating FastAPI application…")
     app = create_app(session=session)
+    _register_demo_resource_routes(app)
+    manifest = _load_demo_resources_manifest()
+    if manifest:
+        ref_count = len(manifest.get("references") or [])
+        _log_step(
+            f"Demo resources manifest loaded ({ref_count} references) — "
+            f"GET /api/demo/resources"
+        )
 
     service_domain = os.environ.get("SERVICE_DOMAIN", "")
     app_url = (os.environ.get("APP_URL") or "").strip().rstrip("/")

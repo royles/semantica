@@ -55,7 +55,9 @@ Read-only UIs may use `CDSW_READONLY_PORT`; Explorer needs read/write graph APIs
 | `APP_URL` | Optional external HTTPS URL (Inference apps) |
 | `CDSW_APP_POLLING_ENDPOINT` | Optional; set to `/healthcheck` or `/api/health` if CAI marks the app “not ready” |
 | `SEMANTICA_ALLOW_ANONYMOUS` | **`true`** for SSO web apps; browser UI does not send `X-API-Key` |
-| `SEMANTICA_GRAPH_PATH` | Optional ContextGraph JSON |
+| `SEMANTICA_GRAPH_PATH` | Optional ContextGraph JSON (default: `fixtures/ai_capital_graph.json`) |
+| `SEMANTICA_DEMO_GRAPH_PATH` | Set automatically to the default demo graph path |
+| Demo resources API | **`GET /api/demo/resources`** — bibliography JSON; **`GET /api/demo/graph`** — download default graph |
 
 ## Authentication (empty UI)
 

@@ -1,0 +1,143 @@
+{
+  "default_graph": "ai_capital_graph.json",
+  "description": "Grounded AI industry capital/supply demo for Cloudera AI Knowledge Explorer. Node/edge inspector shows source and source_url; full text includes inline citations.",
+  "regenerate": "python deploy/cloudera/inference-app/fixtures/seed_ai_capital_graph.py",
+  "references": [
+    {
+      "url": "https://apnews.com/article/amazon-anthropic-investment-ai-big-tech-f5108beaa33455f331010489e03586d4",
+      "kind": "edge_citation"
+    },
+    {
+      "url": "https://assets.publishing.service.gov.uk/media/6719ff5f549f63039436b3c8/__Full_text_decision__.pdf",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://azure.microsoft.com/en-us/blog/introducing-the-new-ai-accelerator-optimized-vms-with-amd-mi300x/",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://azure.microsoft.com/en-us/blog/microsoft-and-mistral-ai-announce-new-partnership-to-accelerate-ai-innovation-and-introduce-mistral-large-first-on-azure/",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://cohere.com/blog/series-d",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://group.softbank/en/ir/financials/annual_reports",
+      "kind": "edge_citation"
+    },
+    {
+      "url": "https://group.softbank/en/news/press/20250122",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://investor.atmeta.com/investor-news/press-release-details/2024/Meta-Reports-Fourth-Quarter-and-Full-Year-2023-Results/default.aspx",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://investor.nvidia.com/",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://nvidianews.nvidia.com/news/nvidia-and-softbank-group-announce-termination-of-nvidias-acquisition-of-arm-limited",
+      "kind": "edge_citation"
+    },
+    {
+      "url": "https://openai.com/index/announcing-the-stargate-project/",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://press.aboutamazon.com/2023/9/amazon-and-anthropic-announce-strategic-collaboration-to-advance-generative-ai",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://techcrunch.com/2024/02/27/microsoft-made-a-16-million-investment-in-mistral-ai/",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://www.aboutamazon.com/news/aws/amazon-invests-additional-4-billion-anthropic-ai/",
+      "kind": "edge_citation"
+    },
+    {
+      "url": "https://www.aboutamazon.com/news/company-news/amazon-anthropic-ai-investment",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://www.anthropic.com/news/anthropic-series-c",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://www.googlecloudpresscorner.com/2023-11-08-Google-Announces-Expansion-of-AI-Partnership-with-Anthropic",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://www.govinfo.gov/content/pkg/DCPD-202500157/html/DCPD-202500157.htm",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://www.intel.com/content/www/us/en/newsroom/news/intel-gaudi-3-ai-accelerator.html",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://www.nvidia.com/en-us/about-nvidia/press-releases/2023/nvidia-databricks-strategic-partnership/",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://www.nvidia.com/en-us/about-nvidia/ventures/",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://www.nvidia.com/en-us/geforce/news/coreweave-secures-2-3b-debt-financing-for-ai-infrastructure/",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://www.oracle.com/news/announcement/oracle-invests-in-cohere-2023-06-08/",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://www.reuters.com/technology/apple-holds-talks-with-google-bring-gemini-ai-iphone-2024-03-18/",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://www.reuters.com/technology/artificial-intelligence/google-hires-characterai-cofounders-licenses-its-models-information-reports-2024-08-02/",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://www.reuters.com/technology/artificial-intelligence/musks-xai-raises-6-billion-funding-valuation-24-billion-2024-05-26/",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://www.reuters.com/technology/artificial-intelligence/openai-uses-nvidia-rival-chips-amid-chip-shortage-2024-03-20/",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://www.reuters.com/technology/google-agrees-invest-up-2-bln-openai-rival-anthropic-wsj-2023-10-27/",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://www.reuters.com/technology/microsoft-agreed-pay-inflection-650-mln-while-hiring-its-staff-information-2024-03-21/",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204424000118/R16.htm",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000095017023035122/msft-20230630.htm",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256310/msft-ex99_2.htm",
+      "kind": "node_citation"
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312525256321/R26.htm",
+      "kind": "edge_citation"
+    },
+    {
+      "url": "https://www.tsmc.com/static/abouttsmcaz/nasdaq_ir/annual-reports/2023/english/index.html",
+      "kind": "node_citation"
+    }
+  ]
+}
